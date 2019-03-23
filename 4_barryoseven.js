@@ -35,7 +35,7 @@ setInterval(function(){
 	if(character.rip || is_moving(character)) return;
 
 	// buy mana potions
-	if (quantity("mpot0") < 5) {
+	if (quantity("mpot0") === 0) {
 		smart_move({to:"potions", return: true}, function() {
 			const potionCost = 20;
 			const amount = Math.ceil(character.gold / potionCost);
@@ -45,7 +45,7 @@ setInterval(function(){
 	}
 	
 	// buy health potions
-	if (quantity("hpot0") < 5) {
+	if (quantity("hpot0") === 0) {
 		smart_move({to:"potions", return: true}, function() {
 			const potionCost = 20;
 			const amount = Math.ceil(character.gold / potionCost);
