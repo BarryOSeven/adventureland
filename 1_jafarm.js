@@ -23,9 +23,9 @@ setInterval(function() {
 	
 	const upgradeScrollCount = quantity("scroll0");
 	
-	if (upgradeScrollCount < 10) {
+	if (upgradeScrollCount === 0) {
 		smart_move({to: "scrolls"}, function() {
-			buy_with_gold("scroll0");	
+			buy_with_gold("scroll0", 10);	
 		});
 		return;
 	}
