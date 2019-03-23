@@ -1,13 +1,10 @@
 // MichaelK
 
-// run monster determinator once every minute
-setInterval(function() {
+setInterval(function(){
 	load_code(99, function() {
 		game_log("Unable to run monster determinator");
 	});
-}, 60 * 1000)
 
-setInterval(function(){
 	if (character.max_hp - character.hp > 200) {
 		use('hp');	
 	}
