@@ -79,6 +79,7 @@ setInterval(function(){
 		const leonidas = get_player("Leonidas");
 		const barryOSeven = get_player("BarryOSeven");
 		
+		game_log("Should send CM");
 		if (is_player(leonidas)) {
 			game_log("Sending CM to leonidas");
 			send_cm("Leonidas", data);
