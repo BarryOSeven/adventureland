@@ -48,7 +48,7 @@ setInterval(function(){
 	const monster_map_name = monster_array[0][3];
 	
 	if (current_map.name !== monster_map_name) {
-		game_log("Moving to monster type: " + monster_type);
+		game_log("Moving to monster type: " + monster_type + " on map " + monster_map_name);
 		smart_move({to: monster_type});
 		return;
 	}
