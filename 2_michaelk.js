@@ -42,9 +42,16 @@ setInterval(function(){
 		});
 	}
 	
-	game_log(JSON.stringify(monster_array[0][1]));
+	const current_map = get_map();
+	const monster_map_name = monster_array[3];
+	if (current_map.name !== monster_map_name) {
+		game_log("Moving to map: " + monster_map_name);
+		smart_move({map: monster_map_name});
+		return;
+	}
+
 	target=get_nearest_monster({type: monster_array[0][1]});
-	game_log(JSON.stringify(target));
+	
 	if(target) {
 		change_target(target);
 	} else {
