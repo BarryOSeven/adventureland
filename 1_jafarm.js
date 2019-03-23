@@ -10,7 +10,8 @@ const allFiles = [
     "4_barryoseven.js"
 ];
 
-function pull_code() {
+function pull_code(on_code_updated) {
+	let updated = 0;
     parent.api_call("list_codes", {
         callback: function () {
             game_log("Updating from GitHub...");
@@ -26,7 +27,12 @@ function pull_code() {
                             code: request.responseText
                         };
                         
-                        parent.api_call("save_code", data);
+						parent.api_call("save_code", data);
+						updated++;
+						if (updated === allFiles.length) {
+							game_log("Code succesfully updated");
+							on_code_updated();
+						}
                     }
                 };
                 request.send();
@@ -48,19 +54,21 @@ function getCodeObject(file) {
     return codeObject;
 }
 
-pull_code();
-
 auto_reload("on");
 
-start_character("MichaelK", 2);
-start_character("Leonidas", 3);
-start_character("BarryOSeven", 4);
+function on_code_updated() {
+	start_character("MichaelK", 2);
+	start_character("Leonidas", 3);
+	start_character("BarryOSeven", 4);	
+}
 
 function on_destroy() {
 	stop_character("MichaelK");
 	stop_character("Leonidas");
     stop_character("BarryOSeven");
 }
+
+pull_code(on_code_updated);
 
 setInterval(function() {
 	if (is_moving(character)) {
