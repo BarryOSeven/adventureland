@@ -1,4 +1,4 @@
-//JafarM
+//JafarM test comment
 
 load_code("github", function() {
 	game_log("Error while pulling code");
