@@ -43,15 +43,14 @@ setInterval(function(){
 		});
 	}
 	
-	target=get_nearest_monster({min_xp:100,max_att:120});
+	target=get_nearest_monster({type: monster_array[0][1]});
+	
 	if(target) {
 		change_target(target);
 	} else {
 		set_message("No Monsters");
 		return;
 	}
-
-	game_log(JSON.stringify(monster_array[0]));
 	
 	if(!in_attack_range(target))
 	{
