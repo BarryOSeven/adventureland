@@ -1,5 +1,36 @@
 //JafarM 
 
+auto_reload("on");
+
+function on_code_updated() {
+	start_character("MichaelK", 2);
+	start_character("Leonidas", 3);
+	start_character("BarryOSeven", 4);	
+}
+
+function on_destroy() {
+	stop_character("MichaelK");
+	stop_character("Leonidas");
+    stop_character("BarryOSeven");
+}
+
+pull_code(on_code_updated);
+
+setInterval(function() {
+	if (is_moving(character)) {
+		return;
+	}
+	
+	const upgradeScrollCount = quantity("scroll0");
+	
+	if (upgradeScrollCount < 10) {
+		smart_move({to: "scrolls"}, function() {
+			buy_with_gold("scroll0");	
+		});
+		return;
+	}
+}, 1000);
+
 // github
 const baseURL = "https://raw.githubusercontent.com/BarryOSeven/adventureland/master/";
 
@@ -53,34 +84,3 @@ function getCodeObject(file) {
 
     return codeObject;
 }
-
-auto_reload("on");
-
-function on_code_updated() {
-	start_character("MichaelK", 2);
-	start_character("Leonidas", 3);
-	start_character("BarryOSeven", 4);	
-}
-
-function on_destroy() {
-	stop_character("MichaelK");
-	stop_character("Leonidas");
-    stop_character("BarryOSeven");
-}
-
-pull_code(on_code_updated);
-
-setInterval(function() {
-	if (is_moving(character)) {
-		return;
-	}
-	
-	const upgradeScrollCount = quantity("scroll0");
-	
-	if (upgradeScrollCount < 10) {
-		smart_move({to: "scrolls"}, function() {
-			buy_with_gold("scroll0");	
-		});
-		return;
-	}
-}, 1000);
