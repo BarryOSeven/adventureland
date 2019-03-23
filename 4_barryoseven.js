@@ -4,8 +4,6 @@ load_code(99, function() {
 });
 
 function on_cm(name, data) {
-	game_log("Cm received");
-	game_log(JSON.stringify(data));
 	switch(data.type) {
 		case "target":
 			change_target(data.target);
