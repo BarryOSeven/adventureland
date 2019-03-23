@@ -63,6 +63,7 @@ setInterval(function(){
 			data: target
 		};
 
+		game_log("Sending CM for target determination");
 		send_cm(["BarryOSeven", "Leonidas"], data);
 		
 		if(target) {
