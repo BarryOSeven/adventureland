@@ -50,6 +50,8 @@ setInterval(function(){
 		set_message("No Monsters");
 		return;
 	}
+
+	game_log(monster_array.length);
 	
 	if(!in_attack_range(target))
 	{

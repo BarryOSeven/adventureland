@@ -25,13 +25,11 @@ and other damage reduction or damage modifiers
 
 */
 
-
 var your_attack = character.attack;		//this is your characters average attack
 var monster;                            //monster data
 var monster_info;
 var hits_needed_to_kill;                //number of attacks needed to kill monster
-var monster_array = [];
-    
+var monster_array = []; 
     
 for(mapID in parent.G.maps)
 {
