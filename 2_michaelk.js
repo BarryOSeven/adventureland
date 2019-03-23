@@ -61,13 +61,21 @@ setInterval(function(){
 	
 	if (!target) {
 		target = get_nearest_monster();
-		
+
+		if(target) {
+			change_target(target);
+		} else {
+			set_message("No Monsters");
+			return;
+		}	
+	}
+
+	if (target) {
 		// send target to support classes
 		const data = {
 			type: "target",
 			target: target
 		};
-
 		const leonidas = get_player("Leonidas");
 		const barryOSeven = get_player("BarryOSeven");
 		
@@ -77,13 +85,6 @@ setInterval(function(){
 		if (is_player(barryOSeven)) {
 			send_cm("BarryOSeven", data);
 		}
-		
-		if(target) {
-			change_target(target);
-		} else {
-			set_message("No Monsters");
-			return;
-		}	
 	}
 
 	if(!in_attack_range(target))
