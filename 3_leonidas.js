@@ -6,7 +6,11 @@ load_code(99, function() {
 let target;
 
 function on_cm(name, data) {
-	change_target(data);
+	switch(data.type) {
+		case "target":
+			change_target(data);
+			break;
+	}
 }
 
 setInterval(function(){

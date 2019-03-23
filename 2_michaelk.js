@@ -56,6 +56,15 @@ setInterval(function(){
 	var target=get_targeted_monster();
 	if (!target) {
 		target = get_nearest_monster();
+		
+		// send target to support classes
+		const data = {
+			type: "target",
+			data: target
+		};
+
+		send_cm(["BarryOSeven", "Leonidas"], data);
+		
 		if(target) {
 			change_target(target);
 		} else {

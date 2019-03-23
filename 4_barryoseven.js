@@ -4,7 +4,11 @@ load_code(99, function() {
 });
 
 function on_cm(name, data) {
-	change_target(data);
+	switch(data.type) {
+		case "target":
+			change_target(data);
+			break;
+	}
 }
 
 setInterval(function(){
@@ -60,9 +64,6 @@ setInterval(function(){
 	var target=get_targeted_monster();
 	if (!target) {
 		target = get_nearest_monster();
-
-		// send target to support classes
-		send_cm(["BarryOSeven", "Leonidas"], target);
 
 		if(target) {
 			change_target(target);
