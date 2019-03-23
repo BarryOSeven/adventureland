@@ -3,6 +3,10 @@ load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
 
+function on_cm(name, data) {
+	change_target(data);
+}
+
 setInterval(function(){
 	if (character.max_hp - character.hp > 200) {
 		use('hp');	
@@ -56,6 +60,10 @@ setInterval(function(){
 	var target=get_targeted_monster();
 	if (!target) {
 		target = get_nearest_monster();
+
+		// send target to support classes
+		send_cm(["BarryOSeven", "Leonidas"], target);
+
 		if(target) {
 			change_target(target);
 		} else {

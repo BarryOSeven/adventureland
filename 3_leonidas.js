@@ -3,6 +3,12 @@ load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
 
+let target;
+
+function on_cm(name, data) {
+	change_target(data);
+}
+
 setInterval(function(){
 	if (character.max_hp - character.hp > 200) {
 		use('hp');	
