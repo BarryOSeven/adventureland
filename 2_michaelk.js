@@ -58,6 +58,7 @@ setInterval(function(){
 	}
 
 	var target=get_targeted_monster();
+	
 	if (!target) {
 		target = get_nearest_monster();
 		
