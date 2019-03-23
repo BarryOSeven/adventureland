@@ -37,7 +37,9 @@ setInterval(function(){
 	// buy mana potions
 	if (quantity("mpot0") < 5) {
 		smart_move({to:"potions", return: true}, function() {
-			buy_with_gold("mpot0", 20);
+			const potionCost = 20;
+			const amount = Math.ceil(character.gold / potionCost);
+			buy_with_gold("mpot0", amount);
 			return;
 		});
 	}
@@ -45,7 +47,9 @@ setInterval(function(){
 	// buy health potions
 	if (quantity("hpot0") < 5) {
 		smart_move({to:"potions", return: true}, function() {
-			buy_with_gold("hpot0", 20);
+			const potionCost = 20;
+			const amount = Math.ceil(character.gold / potionCost);
+			buy_with_gold("hpot0", amount);
 			return;
 		});
 	}
