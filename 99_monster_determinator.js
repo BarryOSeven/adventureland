@@ -27,7 +27,7 @@ and other damage reduction or damage modifiers
 
 
 var your_attack = character.attack;		//this is your characters average attack
-
+game_log(character.attack);
 var monster;                            //monster data
 var monster_info;
 var hits_needed_to_kill;                //number of attacks needed to kill monster
