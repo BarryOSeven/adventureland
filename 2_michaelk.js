@@ -49,7 +49,7 @@ setInterval(function(){
 	
 	if(!in_attack_range(target))
 	{
-		smart_move(
+		move(
 			character.x+(target.x-character.x)/2,
 			character.y+(target.y-character.y)/2
 			);
