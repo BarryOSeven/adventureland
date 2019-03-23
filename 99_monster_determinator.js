@@ -55,5 +55,3 @@ for(mapID in parent.G.maps)
 monster_array.sort(function(a,b){
     return b[2] - a[2];
 });
-
-show_json(monster_array);
