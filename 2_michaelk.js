@@ -46,6 +46,8 @@ setInterval(function(){
 		});
 	}
 	
+	game_log(JSON.stringify(monster_array[0]));
+	game_log(JSON.stringify(monster_array[0][1]));
 	target=get_nearest_monster({type: monster_array[0][1]});
 	
 	if(target) {
