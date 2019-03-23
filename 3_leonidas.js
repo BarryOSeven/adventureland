@@ -40,7 +40,7 @@ setInterval(function(){
 	if (quantity("mpot0") === 0) {
 		smart_move({to:"potions", return: true}, function() {
 			const potionCost = 20;
-			const amount = Math.ceil(character.gold / potionCost);
+			const amount = Math.floor(character.gold / potionCost);
 			buy_with_gold("mpot0", amount);
 			return;
 		});
@@ -50,7 +50,7 @@ setInterval(function(){
 	if (quantity("hpot0") === 0) {
 		smart_move({to:"potions", return: true}, function() {
 			const potionCost = 20;
-			const amount = Math.ceil(character.gold / potionCost);
+			const amount = Math.floor(character.gold / potionCost);
 			buy_with_gold("hpot0", amount);
 			return;
 		});
