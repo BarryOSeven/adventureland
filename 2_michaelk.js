@@ -1,10 +1,9 @@
 // MichaelK
+load_code(99, function() {
+	game_log("Unable to run monster determinator");
+});
 
 setInterval(function(){
-	load_code(99, function() {
-		game_log("Unable to run monster determinator");
-	});
-
 	if (character.max_hp - character.hp > 200) {
 		use('hp');	
 	}
@@ -43,10 +42,9 @@ setInterval(function(){
 		});
 	}
 	
-	game_log(JSON.stringify(monster_array[0]));
 	game_log(JSON.stringify(monster_array[0][1]));
 	target=get_nearest_monster({type: monster_array[0][1]});
-	
+	game_log(JSON.stringify(target));
 	if(target) {
 		change_target(target);
 	} else {
