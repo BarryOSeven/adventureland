@@ -63,8 +63,7 @@ setInterval(function(){
 			target: target
 		};
 
-		send_cm("BarryOSeven", data);
-		send_cm("Leonidas", data);
+		send_cm(["BarryOSeven", "Leonidas"], data);
 		
 		if(target) {
 			change_target(target);
