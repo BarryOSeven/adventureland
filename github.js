@@ -10,7 +10,6 @@ const allFiles = [
     "5_github.js"
 ];
 
-
 function pull_code() {
     parent.api_call("list_codes", {
         callback: function () {
@@ -47,3 +46,5 @@ function getCodeObject(file) {
 
     return codeObject;
 }
+
+pull_code();
