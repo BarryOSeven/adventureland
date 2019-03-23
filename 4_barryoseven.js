@@ -65,16 +65,10 @@ setInterval(function(){
 		return;
 	}
 
-	var target=get_targeted_monster();
+	let target=get_targeted_monster();
 	if (!target) {
-		target = get_nearest_monster();
-
-		if(target) {
-			change_target(target);
-		} else {
-			set_message("No Monsters");
-			return;
-		}	
+		set_message("Waiting for target");
+		return;
 	}
 	
 	if(!in_attack_range(target))
