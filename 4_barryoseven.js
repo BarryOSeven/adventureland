@@ -1,4 +1,7 @@
 // BarryOSeven
+load_code(99, function() {
+	game_log("Unable to run monster determinator");
+});
 
 setInterval(function(){
 	if (character.max_hp - character.hp > 200) {
@@ -39,16 +42,26 @@ setInterval(function(){
 		});
 	}
 	
+	const current_map = get_map();
+	const monster_name = monster_array[0][0];
+	const monster_type = monster_array[0][1];
+	const monster_map_name = monster_array[0][3];
+	
+	if (current_map.name !== monster_map_name) {
+		game_log("Moving to monster type: " + monster_type);
+		smart_move({to: monster_type});
+		return;
+	}
+
 	var target=get_targeted_monster();
-	if(!target)
-	{
-		target=get_nearest_monster({min_xp:100,max_att:120});
-		if(target) change_target(target);
-		else
-		{
+	if (!target) {
+		target = get_nearest_monster();
+		if(target) {
+			change_target(target);
+		} else {
 			set_message("No Monsters");
 			return;
-		}
+		}	
 	}
 	
 	if(!in_attack_range(target))
