@@ -80,6 +80,7 @@ setInterval(function(){
 		const barryOSeven = get_player("BarryOSeven");
 		
 		if (is_player(leonidas)) {
+			game_log("Sending CM to leonidas");
 			send_cm("Leonidas", data);
 		}
 		if (is_player(barryOSeven)) {

@@ -6,6 +6,7 @@ load_code(99, function() {
 let target;
 
 function on_cm(name, data) {
+	game_log("CM received");
 	switch(data.type) {
 		case "target":
 			change_target(data.target);
