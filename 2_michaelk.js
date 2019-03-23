@@ -44,11 +44,10 @@ setInterval(function(){
 	
 	const current_map = get_map();
 	const monster_map_name = monster_array[0][3];
-	const monster_name = monster_array[0][0];
-	game_log(current_map.name);
+	
 	if (current_map.name !== monster_map_name) {
-		game_log("Moving to monster: " + monster_name);
-		smart_move({to: monster_name});
+		game_log("Moving to map: " + monster_map_name);
+		smart_move({map: monster_map_name});
 		return;
 	}
 
