@@ -32,7 +32,7 @@ setInterval(function() {
 }, 1000);
 
 // github
-const baseURL = "https://raw.githack.com/BarryOSeven/adventureland/master/";
+const baseURL = "https://raw.githubusercontent.com/BarryOSeven/adventureland/master/";
 
 const allFiles = [
     "1_jafarm.js",
