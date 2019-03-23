@@ -67,7 +67,15 @@ setInterval(function(){
 			target: target
 		};
 
-		send_cm(["BarryOSeven", "Leonidas"], data);
+		const leonidas = get_player("Leonidas");
+		const barryOSeven = get_player("BarryOSeven");
+		
+		if (is_player(leonidas)) {
+			send_cm("Leonidas", data);
+		}
+		if (is_player(barryOSeven)) {
+			send_cm("BarryOSeven", data);
+		}
 		
 		if(target) {
 			change_target(target);
