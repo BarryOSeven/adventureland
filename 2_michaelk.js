@@ -60,7 +60,7 @@ setInterval(function(){
 		// send target to support classes
 		const data = {
 			type: "target",
-			data: target
+			target: target
 		};
 
 		game_log("Sending CM for target determination");

@@ -8,7 +8,7 @@ let target;
 function on_cm(name, data) {
 	switch(data.type) {
 		case "target":
-			change_target(data);
+			change_target(data.target);
 			break;
 	}
 }
