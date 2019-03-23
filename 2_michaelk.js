@@ -51,7 +51,7 @@ setInterval(function(){
 		return;
 	}
 
-	game_log(monster_array.length);
+	game_log(JSON.stringify(monster_array[0]));
 	
 	if(!in_attack_range(target))
 	{
