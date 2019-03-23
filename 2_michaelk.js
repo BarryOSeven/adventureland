@@ -1,6 +1,10 @@
 // MichaelK
 
 setInterval(function(){
+	load_code(99, function() {
+		game_log("Unable to run monster determinator");
+	});
+
 	if (character.max_hp - character.hp > 200) {
 		use('hp');	
 	}

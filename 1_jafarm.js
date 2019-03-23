@@ -38,7 +38,8 @@ const allFiles = [
     "1_jafarm.js",
     "2_michaelk.js",
     "3_leonidas.js",
-    "4_barryoseven.js"
+    "4_barryoseven.js",
+    "99_monster_determinator.js"
 ];
 
 function pull_code(on_code_updated) {
