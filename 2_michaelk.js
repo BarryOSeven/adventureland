@@ -80,7 +80,6 @@ setInterval(function(){
 	if(!in_attack_range(target))
 	{
 		smart_move({to: target});
-		// Walk half the distance
 	}
 	else if(can_attack(target))
 	{
