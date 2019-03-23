@@ -76,17 +76,8 @@ setInterval(function(){
 			type: "target",
 			target: target
 		};
-		const leonidas = get_player("Leonidas");
-		const barryOSeven = get_player("BarryOSeven");
-		
-		game_log("Should send CM");
-		if (is_player(leonidas)) {
-			game_log("Sending CM to leonidas");
-			send_cm("Leonidas", data);
-		}
-		if (is_player(barryOSeven)) {
-			send_cm("BarryOSeven", data);
-		}
+
+		send_cm(["BarryOSeven", "Leonidas"], data);
 	}
 
 	if(!in_attack_range(target))
