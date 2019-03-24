@@ -16,43 +16,10 @@ function on_destroy() {
 
 pull_code(on_code_updated);
 
-// collect money state
-// buy scrolls state
-// buy items state
-// upgrade items state
-
-const state = "collect_money_michaelk";
-
-function handle_collect_money(name) {
-    const player = get_player(name);
-    game_log(JSON.stringify(player));
-    const x = player.real_x;
-    const y = player.real_y;
-
-    smart_move({x: x, y: y}, function() {
-        game_log("Moved to " + name);
-    });
-}
-
 setInterval(function() {
 	if (is_moving(character)) {
 		return;
     }
-    
-    switch(state) {
-        case "collect_money_michaelk":
-            game_log("collect money_michaelk");
-            handle_collect_money("MichaelK");
-            break;
-    }
-    // go to MichaelK to collect money
-        // send cm to send money
-
-    // go to Leonidas to collect money
-        // send cm to send money
-    
-    // go to BarryOSeven to collect money
-        // send cm to send money
 
 	const upgradeScrollCount = quantity("scroll0");
 	
