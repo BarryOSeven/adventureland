@@ -30,9 +30,9 @@ function handle_collect_money(player) {
     smart_move({x: player.real_x, y: player.real_y, map: player.in}, function() {
         const data = {
             type: "send_money",
-            player: character
+            name: character.name
         };
-
+		
         send_cm(player.name, data);
     });
 }

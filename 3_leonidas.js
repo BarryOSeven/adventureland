@@ -16,8 +16,8 @@ function on_cm(name, data) {
 	}
 }
 
-function handle_send_money(player) {
-	send_gold(player.name, character.gold - 2000);
+function handle_send_money(name) {
+	send_gold(name, character.gold - 2000);
 }
 
 setInterval(function(){
