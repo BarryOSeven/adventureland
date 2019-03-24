@@ -27,7 +27,7 @@ function handle_collect_money(player) {
 		return;
     }
 
-    smart_move({x: player.real_x, y: player.real_y}, function() {
+    smart_move({x: player.real_x, y: player.real_y, map: player.in}, function() {
         const data = {
             type: "send_money",
             player: character
