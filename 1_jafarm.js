@@ -14,9 +14,27 @@ function on_destroy() {
     stop_character("BarryOSeven");
 }
 
+function on_cm(name, data) {
+	switch(data.type) {
+        case "collect_money":
+            game_log("collect money cm received");
+            handle_collect_money(data.player);
+			break;
+	}
+}
+
+function handle_collect_money(player) {
+    game_log("Handle collect money for " + player.name);
+    game_log(JSON.stringify(player));
+}
+
 pull_code(on_code_updated);
 
 setInterval(function() {
+    if (character.rip) {
+		respawn();	
+    }
+    
 	if (is_moving(character)) {
 		return;
     }

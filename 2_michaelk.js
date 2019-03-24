@@ -14,10 +14,13 @@ setInterval(function(){
 	
 	loot();
 
-	const merchant = get_player("JafarM");
-	const goldOffset = 2000;
-	if (is_player(merchant) && character.gold > goldOffset + 100) {
-		send_gold("JafarM", character.gold - goldOffset);
+	if (character.gold > 3000) {
+		const data = {
+			type: "collect_money",
+			player: character
+		};
+
+		send_cm("JafarM", data);
 	}
 	
 	if (character.rip) {
