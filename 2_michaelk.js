@@ -6,7 +6,7 @@ load_code(99, function() {
 function on_cm(name, data) {
 	switch(data.type) {
 		case "send_money":
-			handle_send_money(data.player);
+			handle_send_money(data.name);
 			break;
 	}
 }

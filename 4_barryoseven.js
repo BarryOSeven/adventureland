@@ -9,7 +9,7 @@ function on_cm(name, data) {
 			change_target(data.target);
 			break;
 		case "send_money":
-			handle_send_money(data.player);
+			handle_send_money(data.name);
 			break;
 	}
 }
