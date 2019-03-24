@@ -25,7 +25,7 @@ const state = "collect_money_michaelk";
 
 function handle_collect_money(name) {
     const player = get_player(name);
-
+    game_log(JSON.stringify(player));
     const x = player.real_x;
     const y = player.real_y;
 
@@ -41,6 +41,7 @@ setInterval(function() {
     
     switch(state) {
         case "collect_money_michaelk":
+            game_log("collect money_michaelk");
             handle_collect_money("MichaelK");
             break;
     }
