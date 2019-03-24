@@ -23,6 +23,17 @@ pull_code(on_code_updated);
 
 const state = "collect_money_michaelk";
 
+function handle_collect_money(name) {
+    const player = get_player(name);
+
+    const x = player.real_x;
+    const y = player.real_y;
+
+    smart_move({x: x, y: y}, function() {
+        game_log("Moved to " + name);
+    });
+}
+
 setInterval(function() {
 	if (is_moving(character)) {
 		return;
@@ -30,12 +41,7 @@ setInterval(function() {
     
     switch(state) {
         case "collect_money_michaelk":
-            game_log("Moving towards MichaelK");
-            smart_move({to: "MichaelK"}, function() {
-                game_log("Moved to MichaelK");
-                //send cm
-                //change state
-            });
+            handle_collect_money("MichaelK");
             break;
     }
     // go to MichaelK to collect money
