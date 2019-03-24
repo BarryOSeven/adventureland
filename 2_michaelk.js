@@ -3,6 +3,18 @@ load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
 
+function on_cm(name, data) {
+	switch(data.type) {
+		case "send_money":
+			handle_send_money(data.player);
+			break;
+	}
+}
+
+function handle_send_money(player) {
+	send_gold(player.name, character.gold - 2000);
+}
+
 setInterval(function(){
 	if (character.max_hp - character.hp > 200) {
 		use('hp');	

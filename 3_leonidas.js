@@ -10,7 +10,14 @@ function on_cm(name, data) {
 		case "target":
 			change_target(data.target);
 			break;
+		case "send_money":
+			handle_send_money(data.player);
+			break;
 	}
+}
+
+function handle_send_money(player) {
+	send_gold(player.name, character.gold - 2000);
 }
 
 setInterval(function(){

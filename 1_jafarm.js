@@ -17,15 +17,20 @@ function on_destroy() {
 function on_cm(name, data) {
 	switch(data.type) {
         case "collect_money":
-            game_log("collect money cm received");
             handle_collect_money(data.player);
 			break;
 	}
 }
 
 function handle_collect_money(player) {
-    game_log("Handle collect money for " + player.name);
-    game_log(JSON.stringify(player));
+    smart_move({x: player.real_x, y: player.real_y}, function() {
+        const data = {
+            type: "send_money",
+            player: character
+        };
+
+        send_cm(player.name, data);
+    });
 }
 
 pull_code(on_code_updated);
