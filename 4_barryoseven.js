@@ -35,20 +35,20 @@ setInterval(function(){
 	if(character.rip || is_moving(character)) return;
 
 	// buy mana potions
-	if (quantity("mpot0") < 5) {
+	if (quantity("mpot0") === 0) {
 		smart_move({to:"potions", return: true}, function() {
 			const potionCost = 20;
-			const amount = Math.ceil(character.gold / potionCost);
+			const amount = Math.floor(character.gold / potionCost);
 			buy_with_gold("mpot0", amount);
 			return;
 		});
 	}
 	
 	// buy health potions
-	if (quantity("hpot0") < 5) {
+	if (quantity("hpot0") === 0) {
 		smart_move({to:"potions", return: true}, function() {
 			const potionCost = 20;
-			const amount = Math.ceil(character.gold / potionCost);
+			const amount = Math.floor(character.gold / potionCost);
 			buy_with_gold("hpot0", amount);
 			return;
 		});
@@ -65,16 +65,10 @@ setInterval(function(){
 		return;
 	}
 
-	var target=get_targeted_monster();
+	let target=get_targeted_monster();
 	if (!target) {
-		target = get_nearest_monster();
-
-		if(target) {
-			change_target(target);
-		} else {
-			set_message("No Monsters");
-			return;
-		}	
+		set_message("Waiting for target");
+		return;
 	}
 	
 	if(!in_attack_range(target))
@@ -82,7 +76,7 @@ setInterval(function(){
 		move(
 			character.x+(target.x-character.x)/2,
 			character.y+(target.y-character.y)/2
-			);
+		);
 		// Walk half the distance
 	}
 	else if(can_attack(target))
