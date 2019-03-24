@@ -1,4 +1,4 @@
-//JafarM 
+//JafarM
 
 auto_reload("on");
 
@@ -16,11 +16,36 @@ function on_destroy() {
 
 pull_code(on_code_updated);
 
+// collect money state
+// buy scrolls state
+// buy items state
+// upgrade items state
+
+const state = "collect_money_michaelk";
+
 setInterval(function() {
 	if (is_moving(character)) {
 		return;
-	}
-	
+    }
+    
+    switch(state) {
+        case "collect_money_michaelk":
+            smart_move({to: "MichaelK"}, function() {
+                game_log("Moved to MichaelK");
+                //send cm
+                //change state
+            });
+            break;
+    }
+    // go to MichaelK to collect money
+        // send cm to send money
+
+    // go to Leonidas to collect money
+        // send cm to send money
+    
+    // go to BarryOSeven to collect money
+        // send cm to send money
+
 	const upgradeScrollCount = quantity("scroll0");
 	
 	if (upgradeScrollCount === 0) {
