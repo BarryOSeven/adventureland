@@ -23,6 +23,10 @@ function on_cm(name, data) {
 }
 
 function handle_collect_money(player) {
+    if (is_moving(character)) {
+		return;
+    }
+
     smart_move({x: player.real_x, y: player.real_y}, function() {
         const data = {
             type: "send_money",
