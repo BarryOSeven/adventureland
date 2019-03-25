@@ -1,4 +1,6 @@
 // Leonidas
+const request_merchant_on_gold = 15000;
+
 load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
@@ -31,7 +33,7 @@ setInterval(function(){
 	
 	loot();
 
-	if (character.gold > 3000) {
+	if (character.gold > request_merchant_on_gold) {
 		const data = {
 			type: "collect_money",
 			player: character
