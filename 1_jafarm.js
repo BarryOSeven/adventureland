@@ -1,4 +1,4 @@
-//JafarM test
+//JafarM
 
 auto_reload("on");
 
