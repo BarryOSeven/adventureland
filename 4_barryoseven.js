@@ -39,12 +39,6 @@ setInterval(function(){
 
 		send_cm("JafarM", data);
 	}
-
-	// const merchant = get_player("JafarM");
-	// const goldOffset = 2000;
-	// if (is_player(merchant) && character.gold > goldOffset + 100) {
-	// 	send_gold("JafarM", character.gold - goldOffset);
-	// }
 	
 	if (character.rip) {
 		respawn();	
