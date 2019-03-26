@@ -59,10 +59,6 @@ function on_cm(name, data) {
 	}
 }
 
-function on_death() {
-    game_log("We're dead, we should implement respawning here");
-}
-
 function handle_collect(player) {
     if (state !== "idle") {
         return;
