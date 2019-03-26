@@ -9,15 +9,13 @@ load_code(99, function() {
 });
 
 setInterval(function(){
-	if (character.max_hp - character.hp > 200) {
-		use('hp');	
-	}
-	
-	if (character.max_mp - character.mp > 300) {
-		use('mp');	
-	}
-	
 	loot();
+	
+	if (character.rip) {
+		respawn();	
+	}
+	
+	if(character.rip || is_moving(character)) return;
 
 	if (character.gold > request_merchant_on_gold) {
 		const data = {
@@ -27,12 +25,14 @@ setInterval(function(){
 
 		send_cm("JafarM", data);
 	}
-	
-	if (character.rip) {
-		respawn();	
+
+	if (character.max_hp - character.hp > 200) {
+		use('hp');	
 	}
 	
-	if(character.rip || is_moving(character)) return;
+	if (character.max_mp - character.mp > 300) {
+		use('mp');	
+	}
 
 	// buy mana potions
 	if (quantity("mpot0") === 0) {
