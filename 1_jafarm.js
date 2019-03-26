@@ -54,7 +54,7 @@ add_top_button("barryoseven_button", "BarryOSeven", send_items_barryoseven);
 function on_cm(name, data) {
 	switch(data.type) {
         case "collect_money":
-            handle_collect_money(data.player);
+            handle_collect(data.player);
 			break;
 	}
 }
@@ -63,7 +63,7 @@ function on_death() {
     game_log("We're dead, we should implement respawning here");
 }
 
-function handle_collect_money(player) {
+function handle_collect(player) {
     if (state !== "idle") {
         return;
     }
@@ -72,16 +72,22 @@ function handle_collect_money(player) {
 		return;
     }
 
-    state = "collect_money";
+    state = "collect";
 
     smart_move({x: player.real_x, y: player.real_y, map: player.in}, function() {
         const data = {
             type: "send_money",
             name: character.name
         };
-        
-        state = "idle";
         send_cm(player.name, data);
+
+        const data = {
+            type: "send_items",
+            name: character.name
+        }
+        send_cm(player.name, data);
+
+        state = "idle";
     });
 }
 
