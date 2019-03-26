@@ -6,6 +6,16 @@ load_code(98, function() {
 
 auto_reload("on");
 
+add_top_button("log", "Log", () => {
+    const data = {
+        type: "log"
+    };
+
+    send_cm("MichaelK", data);
+    send_cm("Leonidas", data);
+    send_cm("BarryOSeven", data);
+});
+
 function on_code_updated() {
 	start_character("MichaelK", 2);
 	start_character("Leonidas", 3);
