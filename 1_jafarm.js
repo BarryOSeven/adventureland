@@ -16,6 +16,16 @@ function on_destroy() {
     stop_character("BarryOSeven");
 }
 
+function log_michaelk() {
+    const data = {
+        type: "log"
+    };
+
+    send_cm("MichaelK", data);
+}
+
+add_top_button("michael_k_button", "MichaelK", log_michaelk);
+
 function on_cm(name, data) {
 	switch(data.type) {
         case "collect_money":
