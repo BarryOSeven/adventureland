@@ -13,10 +13,6 @@ let target;
 setInterval(function(){	
 	loot();
 	
-	if (character.rip) {
-		respawn();	
-	}
-	
 	if(character.rip || is_moving(character)) {
 		return;
 	}
@@ -24,7 +20,9 @@ setInterval(function(){
 	if (character.gold > request_merchant_on_gold) {
 		const data = {
 			type: "collect_money",
-			player: character
+			x: character.real_x,
+			y: character.real_y,
+			map: character.in
 		};
 
 		send_cm("JafarM", data);

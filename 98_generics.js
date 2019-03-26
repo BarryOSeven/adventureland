@@ -10,7 +10,7 @@ function on_cm(name, data) {
 	switch(data.type) {
 		case "collect_money":
 			game_log("collecting money");
-            handle_collect(data.player);
+            handle_collect(name, data);
 			break;
 		case "target":
 			change_target(data.target);
@@ -24,7 +24,7 @@ function on_cm(name, data) {
 	}
 }
 
-function handle_collect(player) {
+function handle_collect(name, data) {
     if (state !== "idle") {
         return;
     }
@@ -35,18 +35,18 @@ function handle_collect(player) {
 
     state = "collect";
 
-    smart_move({x: player.real_x, y: player.real_y, map: player.in}, function() {
+    smart_move({x: data.x, y: data.y, map: data.map}, function() {
         const data = {
             type: "send_money",
             name: character.name
         };
-        send_cm(player.name, data);
+        send_cm(name, data);
 
         const data = {
             type: "send_items",
             name: character.name
         }
-        send_cm(player.name, data);
+        send_cm(name, data);
 
         state = "idle";
     });
@@ -78,4 +78,9 @@ function handle_log() {
 		const item=character.items[i];
 		game_log(item.name);
 	}
+}
+
+function handle_death() {
+	setTimeout(respawn, 15000);
+	return true;
 }

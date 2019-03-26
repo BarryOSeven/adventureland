@@ -11,16 +11,14 @@ load_code(99, function() {
 setInterval(function(){
 	loot();
 	
-	if (character.rip) {
-		respawn();	
-	}
-	
 	if(character.rip || is_moving(character)) return;
 
 	if (character.gold > request_merchant_on_gold) {
 		const data = {
 			type: "collect_money",
-			player: character
+			x: character.real_x,
+			y: character.real_y,
+			map: character.in
 		};
 
 		send_cm("JafarM", data);
