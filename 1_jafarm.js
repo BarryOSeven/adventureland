@@ -22,6 +22,10 @@ function on_cm(name, data) {
 	}
 }
 
+function on_death() {
+    game_log("We're dead, we should implement respawning here");
+}
+
 function handle_collect_money(player) {
     if (is_moving(character)) {
 		return;
