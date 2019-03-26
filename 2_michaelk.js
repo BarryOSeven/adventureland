@@ -21,7 +21,12 @@ function handle_send_money(name) {
 }
 
 function handle_log() {
-	game_log("log inventory of michael k");
+	for(var i=0;i<42;i++)
+	{
+		if(!character.items[i]) continue;
+		const item=character.items[i];
+		game_log(item.name);
+	}
 }
 
 setInterval(function(){
