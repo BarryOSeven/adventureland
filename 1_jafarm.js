@@ -32,9 +32,10 @@ function log_leonidas() {
     send_cm("Leonidas", data);
 }
 
-function log_barryoseven() {
+function send_items_barryoseven() {
     const data = {
-        type: "log"
+        type: "send_items",
+        name: character.name
     };
 
     send_cm("BarryOSeven", data);
@@ -42,7 +43,7 @@ function log_barryoseven() {
 
 add_top_button("michaelk_button", "MichaelK", log_michaelk);
 add_top_button("leonidas_button", "Leonidas", log_leonidas);
-add_top_button("barryoseven_button", "BarryOSeven", log_barryoseven);
+add_top_button("barryoseven_button", "BarryOSeven", send_items_barryoseven);
 
 function on_cm(name, data) {
 	switch(data.type) {
