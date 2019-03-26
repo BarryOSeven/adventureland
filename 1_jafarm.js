@@ -11,6 +11,7 @@ add_top_button("log", "Log", () => {
         type: "log"
     };
 
+    send_cm("JafarK", data);
     send_cm("MichaelK", data);
     send_cm("Leonidas", data);
     send_cm("BarryOSeven", data);
