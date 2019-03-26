@@ -19,7 +19,7 @@ setInterval(function(){
 		return;
 	}
 
-	if (state === "attacking" && character.gold > request_merchant_on_gold) {
+	if (state === "attacking" && character.gold > request_merchant_on_gold - gold_offset) {
 		const data = {
 			type: "collect_money",
 			x: character.real_x,
@@ -89,8 +89,6 @@ setInterval(function(){
 			type: "target",
 			target: target
 		};
-
-		game_log("target");
 
 		send_cm(["BarryOSeven", "Leonidas"], data);
 	}

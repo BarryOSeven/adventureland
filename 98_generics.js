@@ -1,15 +1,13 @@
 let state = "idle";
 const request_merchant_on_gold = 15000;
+const gold_offset = 2000;
 
 add_top_button("log", "Log", () => {
     const data = {
         type: "log"
     };
 
-    send_cm("JafarM", data);
-    send_cm("MichaelK", data);
-    send_cm("Leonidas", data);
-    send_cm("BarryOSeven", data);
+    send_cm(["JafarM", "MichaelK", "Leonidas", "BarryOSeven"], data);
 });
 
 function on_cm(name, data) {
@@ -67,7 +65,7 @@ function handle_collect(name, data) {
 }
 
 function handle_send_money(name) {
-	send_gold(name, character.gold - 2000);
+	send_gold(name, character.gold - gold_offset);
 }
 
 function handle_send_items(name) {
