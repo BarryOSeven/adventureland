@@ -51,42 +51,6 @@ add_top_button("michaelk_button", "MichaelK", send_items_michaelk);
 add_top_button("leonidas_button", "Leonidas", send_items_leonidas);
 add_top_button("barryoseven_button", "BarryOSeven", send_items_barryoseven);
 
-function on_cm(name, data) {
-	switch(data.type) {
-        case "collect_money":
-            handle_collect(data.player);
-			break;
-	}
-}
-
-function handle_collect(player) {
-    if (state !== "idle") {
-        return;
-    }
-
-    if (is_moving(character)) {
-		return;
-    }
-
-    state = "collect";
-
-    smart_move({x: player.real_x, y: player.real_y, map: player.in}, function() {
-        const data = {
-            type: "send_money",
-            name: character.name
-        };
-        send_cm(player.name, data);
-
-        const data = {
-            type: "send_items",
-            name: character.name
-        }
-        send_cm(player.name, data);
-
-        state = "idle";
-    });
-}
-
 function buy_upgrade_scrolls() {
     if (state !== "idle") {
         return;

@@ -1,5 +1,5 @@
 // MichaelK
-const request_merchant_on_gold = 15000;
+
 
 load_code(98, function() {
 	game_log("Unable to run generics");
@@ -8,17 +8,6 @@ load_code(98, function() {
 load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
-
-function on_cm(name, data) {
-	switch(data.type) {
-		case "send_money":
-			handle_send_money(data.name);
-			break;
-		case "send_items":
-			handle_send_items(data.name);
-			break;
-	}
-}
 
 setInterval(function(){
 	if (character.max_hp - character.hp > 200) {
