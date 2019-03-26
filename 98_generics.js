@@ -73,7 +73,7 @@ function handle_send_items(name) {
 	}
 }
 
-// logs character information to screen\
+// logs character information to screen
 function handle_log() {
 	game_log("State: " + state);
 	game_log("Gold: " + character.gold);

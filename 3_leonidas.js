@@ -63,10 +63,9 @@ setInterval(function(){
 	const monster_map_name = monster_array[0][3];
 	
 	if (current_map.name !== monster_map_name) {
+		state = "idle";
 		game_log("Moving to monster type: " + monster_type + " on map " + monster_map_name);
-		smart_move({to: monster_type}, function() {
-			state = "attacking";
-		});
+		smart_move({to: monster_type});
 		return;
 	}
 
@@ -86,6 +85,7 @@ setInterval(function(){
 	}
 	else if(can_attack(target))
 	{
+		state = "attacking";
 		set_message("Attacking");
 		attack(target);
 	}
