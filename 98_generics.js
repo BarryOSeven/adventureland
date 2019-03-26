@@ -1,6 +1,19 @@
 const request_merchant_on_gold = 15000;
 
 function on_cm(name, data) {
+    if (name !== "JafarM") {
+        return;
+    }
+    if (name !== "MichaelK") {
+        return;
+    }
+    if (name !== "Leonidas") {
+        return;
+    }
+    if (name !== "BarryOSeven") {
+        return;
+    }
+
 	switch(data.type) {
         case "collect_money":
             handle_collect(data.player);
