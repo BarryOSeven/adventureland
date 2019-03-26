@@ -81,6 +81,7 @@ function handle_log() {
 }
 
 function handle_death() {
+	state = "idle";
 	setTimeout(respawn, 15000);
 	return true;
 }

@@ -17,7 +17,7 @@ setInterval(function(){
 		return;
 	}
 
-	if (character.gold > request_merchant_on_gold) {
+	if (state === "attacking" && character.gold > request_merchant_on_gold) {
 		const data = {
 			type: "collect_money",
 			x: character.real_x,
@@ -64,7 +64,9 @@ setInterval(function(){
 	
 	if (current_map.name !== monster_map_name) {
 		game_log("Moving to monster type: " + monster_type + " on map " + monster_map_name);
-		smart_move({to: monster_type});
+		smart_move({to: monster_type}, function() {
+			state = "attacking";
+		});
 		return;
 	}
 
