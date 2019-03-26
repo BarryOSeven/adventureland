@@ -1,18 +1,9 @@
 const request_merchant_on_gold = 15000;
 
 function on_cm(name, data) {
-    game_log(name);
-    game_log(JSON.stringify(data));
-    if (name !== "JafarM") {
-        return;
-    }
-    if (name !== "MichaelK") {
-        return;
-    }
-    if (name !== "Leonidas") {
-        return;
-    }
-    if (name !== "BarryOSeven") {
+    const characters = ["JafarM", "MichaelK", "Leonidas", "BarryOSeven"];
+    
+    if (characters.indexOf(name) === -1) {
         return;
     }
 
