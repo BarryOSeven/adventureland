@@ -16,17 +16,19 @@ function on_destroy() {
     stop_character("BarryOSeven");
 }
 
-function log_michaelk() {
+function send_items_michaelk() {
     const data = {
-        type: "log"
+        type: "send_items",
+        name: character.name
     };
 
     send_cm("MichaelK", data);
 }
 
-function log_leonidas() {
+function send_items_leonidas() {
     const data = {
-        type: "log"
+        type: "send_items",
+        name: character.name
     };
 
     send_cm("Leonidas", data);
@@ -41,8 +43,8 @@ function send_items_barryoseven() {
     send_cm("BarryOSeven", data);
 }
 
-add_top_button("michaelk_button", "MichaelK", log_michaelk);
-add_top_button("leonidas_button", "Leonidas", log_leonidas);
+add_top_button("michaelk_button", "MichaelK", send_items_michaelk);
+add_top_button("leonidas_button", "Leonidas", send_items_leonidas);
 add_top_button("barryoseven_button", "BarryOSeven", send_items_barryoseven);
 
 function on_cm(name, data) {

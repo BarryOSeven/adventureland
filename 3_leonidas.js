@@ -15,14 +15,28 @@ function on_cm(name, data) {
 		case "send_money":
 			handle_send_money(data.name);
 			break;
-		case "log":
-			handle_log();
+		case "send_items":
+			handle_send_items(data.name);
 			break;
 	}
 }
 
 function handle_send_money(name) {
 	send_gold(name, character.gold - 2000);
+}
+
+function handle_send_items(name) {
+	for(var i=0;i<42;i++)
+	{
+		if(!character.items[i]) continue;
+		const item=character.items[i];
+	
+		if (item.name === "hpot0" || item.name === "mpot0") {
+			continue;
+		}
+		
+		send_item(name, i);
+	}
 }
 
 function handle_log() {
