@@ -1,5 +1,7 @@
 //JafarM
 
+let state = "idle";
+
 auto_reload("on");
 
 function on_code_updated() {
@@ -27,6 +29,10 @@ function on_death() {
 }
 
 function handle_collect_money(player) {
+    if (state !== "idle") {
+        return;
+    }
+
     if (is_moving(character)) {
 		return;
     }
