@@ -1,5 +1,9 @@
 //JafarM
 
+load_code(98, function() {
+	game_log("Unable to run generics");
+});
+
 let state = "idle";
 
 auto_reload("on");

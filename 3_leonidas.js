@@ -1,6 +1,10 @@
 // Leonidas
 const request_merchant_on_gold = 15000;
 
+load_code(98, function() {
+	game_log("Unable to run generics");
+});
+
 load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
@@ -18,33 +22,6 @@ function on_cm(name, data) {
 		case "send_items":
 			handle_send_items(data.name);
 			break;
-	}
-}
-
-function handle_send_money(name) {
-	send_gold(name, character.gold - 2000);
-}
-
-function handle_send_items(name) {
-	for(var i=0;i<42;i++)
-	{
-		if(!character.items[i]) continue;
-		const item=character.items[i];
-	
-		if (item.name === "hpot0" || item.name === "mpot0") {
-			continue;
-		}
-		
-		send_item(name, i);
-	}
-}
-
-function handle_log() {
-	for(var i=0;i<42;i++)
-	{
-		if(!character.items[i]) continue;
-		const item=character.items[i];
-		game_log(item.name);
 	}
 }
 
