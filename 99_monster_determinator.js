@@ -36,7 +36,6 @@ function determine() {
     {
         for(monsterID in parent.G.maps[mapID].monsters)
         {
-            var checker = false;
             monster = parent.G.maps[mapID].monsters[monsterID];
             monster_info = parent.G.monsters[monster.type];
             
