@@ -23,11 +23,11 @@ function buy_upgrade_scrolls() {
         return;
     }
 
-    state = "buy_upgrade_scrolls";
-
     const upgradeScrollCount = quantity("scroll0");
 	
 	if (upgradeScrollCount === 0) {
+        state = "buy_upgrade_scrolls";
+
 		smart_move({to: "scrolls"}, function() {
             buy_with_gold("scroll0", 10);	
             state = "idle";
