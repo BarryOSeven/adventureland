@@ -1,3 +1,4 @@
+let state = "idle";
 const request_merchant_on_gold = 15000;
 
 function on_cm(name, data) {
@@ -9,7 +10,6 @@ function on_cm(name, data) {
 
 	switch(data.type) {
 		case "collect_money":
-			game_log("collecting money");
             handle_collect(name, data);
 			break;
 		case "target":
@@ -25,6 +25,8 @@ function on_cm(name, data) {
 }
 
 function handle_collect(name, data) {
+	game_log(name);
+	game_log(JSON.stringify(data));
     if (state !== "idle") {
         return;
     }

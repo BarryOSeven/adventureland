@@ -15,8 +15,6 @@ setInterval(function(){
 		return;
 	}
 
-	game_log(request_merchant_on_gold);
-	game_log(character.gold);
 	if (character.gold > request_merchant_on_gold) {
 		const data = {
 			type: "collect_money",
