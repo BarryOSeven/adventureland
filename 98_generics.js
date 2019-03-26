@@ -1,6 +1,24 @@
 let state = "idle";
 const request_merchant_on_gold = 15000;
 
+add_top_button("log", "Log", () => {
+    const data = {
+        type: "log"
+    };
+
+    send_cm("JafarM", data);
+    send_cm("MichaelK", data);
+    send_cm("Leonidas", data);
+    send_cm("BarryOSeven", data);
+});
+
+function on_code_updated() {
+    start_character("JafarM", 1);
+	start_character("MichaelK", 2);
+	start_character("Leonidas", 3);
+	start_character("BarryOSeven", 4);
+}
+
 function on_cm(name, data) {
     const characters = ["JafarM", "MichaelK", "Leonidas", "BarryOSeven"];
     

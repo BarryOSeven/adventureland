@@ -1,31 +1,14 @@
 //JafarM
 
-load_code(97, function() {
-	game_log("Unable to run updates");
-});
-
 load_code(98, function() {
 	game_log("Unable to run generics");
 });
 
-auto_reload("on");
-
-add_top_button("log", "Log", () => {
-    const data = {
-        type: "log"
-    };
-
-    send_cm("JafarK", data);
-    send_cm("MichaelK", data);
-    send_cm("Leonidas", data);
-    send_cm("BarryOSeven", data);
+load_code(97, function() {
+	game_log("Unable to run updates");
 });
 
-function on_code_updated() {
-	start_character("MichaelK", 2);
-	start_character("Leonidas", 3);
-	start_character("BarryOSeven", 4);
-}
+auto_reload("on");
 
 function on_destroy() {
 	stop_character("MichaelK");

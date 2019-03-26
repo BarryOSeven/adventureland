@@ -4,6 +4,10 @@ load_code(98, function() {
 	game_log("Unable to run generics");
 });
 
+load_code(97, function() {
+	game_log("Unable to run updates");
+});
+
 load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
