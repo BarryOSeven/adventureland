@@ -17,7 +17,7 @@ setInterval(function(){
 	
 	if(character.rip || is_moving(character)) return;
 
-	if (state === "attacking" && character.gold > request_merchant_on_gold - gold_offset) {
+	if (state === "attacking" && character.gold > request_merchant_on_gold + gold_offset) {
 		const data = {
 			type: "collect_money",
 			x: character.real_x,
