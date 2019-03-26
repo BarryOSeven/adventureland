@@ -86,8 +86,7 @@ setInterval(function(){
 	if (target) {
 		// send target to support classes
 		const data = {
-			type: "target",
-			target: target
+			type: "target"
 		};
 
 		send_cm(["BarryOSeven", "Leonidas"], data);

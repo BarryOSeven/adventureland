@@ -22,7 +22,7 @@ function on_cm(name, data) {
             handle_collect(name, data);
 			break;
 		case "target":
-			change_target(data.target);
+			handle_target(name)
 			break;
 		case "send_money":
 			handle_send_money(data.name);
@@ -34,6 +34,13 @@ function on_cm(name, data) {
 			handle_log();
 			break;
 	}
+}
+
+function handle_target(name) {
+	const leader = get_player(name);
+	const target = get_target_of(leader);
+
+	change_target(target);
 }
 
 function handle_collect(name, data) {

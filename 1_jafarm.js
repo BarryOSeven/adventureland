@@ -28,10 +28,29 @@ function buy_upgrade_scrolls() {
 	}
 }
 
+function buy_combine_scrolls() {
+    if (state !== "idle") {
+        return;
+    }
+
+    const combineScrollCount = quantity("cscroll0");
+	
+	if (combineScrollCount === 0) {
+        state = "buy_combine_scrolls";
+
+		smart_move({to: "scrolls"}, function() {
+            buy_with_gold("cscroll0", 10);	
+            state = "idle";
+		});
+		return;
+	}
+}
+
 setInterval(function() {
 	if (is_moving(character)) {
 		return;
     }
     
     buy_upgrade_scrolls();
+    buy_combine_scrolls();
 }, 1000);
