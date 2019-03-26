@@ -27,6 +27,7 @@ function on_cm(name, data) {
 function handle_collect(name, data) {
 	game_log(name);
 	game_log(JSON.stringify(data));
+	game_log(state);
     if (state !== "idle") {
         return;
     }
