@@ -50,6 +50,24 @@ function handle_collect_money(player) {
     });
 }
 
+function buy_upgrade_scrolls() {
+    if (state !== "idle") {
+        return;
+    }
+
+    state = "buy_upgrade_scrolls";
+
+    const upgradeScrollCount = quantity("scroll0");
+	
+	if (upgradeScrollCount === 0) {
+		smart_move({to: "scrolls"}, function() {
+            buy_with_gold("scroll0", 10);	
+            state = "idle";
+		});
+		return;
+	}
+}
+
 pull_code(on_code_updated);
 
 setInterval(function() {
@@ -60,15 +78,8 @@ setInterval(function() {
 	if (is_moving(character)) {
 		return;
     }
-
-	const upgradeScrollCount = quantity("scroll0");
-	
-	if (upgradeScrollCount === 0) {
-		smart_move({to: "scrolls"}, function() {
-			buy_with_gold("scroll0", 10);	
-		});
-		return;
-	}
+    
+    buy_upgrade_scrolls();
 }, 1000);
 
 // github
