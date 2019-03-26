@@ -90,6 +90,8 @@ setInterval(function(){
 			target: target
 		};
 
+		game_log("target");
+
 		send_cm(["BarryOSeven", "Leonidas"], data);
 	}
 

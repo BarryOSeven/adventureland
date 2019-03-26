@@ -10,12 +10,6 @@ load_code(97, function() {
 
 auto_reload("on");
 
-function on_destroy() {
-	stop_character("MichaelK");
-	stop_character("Leonidas");
-    stop_character("BarryOSeven");
-}
-
 function buy_upgrade_scrolls() {
     if (state !== "idle") {
         return;

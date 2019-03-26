@@ -17,6 +17,13 @@ function on_code_updated() {
 	start_character("BarryOSeven", 4);
 }
 
+function on_destroy() {
+    stop_character("JafarM");
+	stop_character("MichaelK");
+	stop_character("Leonidas");
+    stop_character("BarryOSeven");
+}
+
 function pull_code(on_code_updated) {
 	let updated = 0;
     parent.api_call("list_codes", {
