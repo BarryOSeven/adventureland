@@ -21,6 +21,9 @@ function on_cm(name, data) {
 		case "send_items":
 			handle_send_items(data.name);
 			break;
+		case "log":
+			handle_log();
+			break;
 	}
 }
 
@@ -70,8 +73,9 @@ function handle_send_items(name) {
 	}
 }
 
-// logs inventory to screen
+// logs character information to screen\
 function handle_log() {
+	game_log("Gold: " + character.gold);
 	for(var i=0;i<42;i++)
 	{
 		if(!character.items[i]) continue;
