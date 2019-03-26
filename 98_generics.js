@@ -36,17 +36,17 @@ function handle_collect(name, data) {
     state = "collect";
 
     smart_move({x: data.x, y: data.y, map: data.map}, function() {
-        const data = {
+        const dataSendMoney = {
             type: "send_money",
             name: character.name
         };
-        send_cm(name, data);
+        send_cm(name, dataSendMoney);
 
-        const data = {
+        const dataSendItems = {
             type: "send_items",
             name: character.name
         }
-        send_cm(name, data);
+        send_cm(name, dataSendItems);
 
         state = "idle";
     });
