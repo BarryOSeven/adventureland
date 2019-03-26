@@ -31,24 +31,29 @@ var monster_info;
 var hits_needed_to_kill;                //number of attacks needed to kill monster
 var monster_array = []; 
     
-for(mapID in parent.G.maps)
-{
-    for(monsterID in parent.G.maps[mapID].monsters)
+function determine() {
+    for(mapID in parent.G.maps)
     {
-		var checker = false;
-        monster = parent.G.maps[mapID].monsters[monsterID];
-        monster_info = parent.G.monsters[monster.type];
-		
-        hits_needed_to_kill = Math.ceil(monster_info.hp/your_attack);
-        xp_per_hit = monster_info.xp / hits_needed_to_kill;
-		
-		if(monster_array.every(e => e[1] != monster.type))
-		{
-			monster_array.push([monster_info.name, monster.type, xp_per_hit, parent.G.maps[mapID].name]);
-		}
+        for(monsterID in parent.G.maps[mapID].monsters)
+        {
+            var checker = false;
+            monster = parent.G.maps[mapID].monsters[monsterID];
+            monster_info = parent.G.monsters[monster.type];
+            
+            hits_needed_to_kill = Math.ceil(monster_info.hp/your_attack);
+            xp_per_hit = monster_info.xp / hits_needed_to_kill;
+            
+            if(monster_array.every(e => e[1] != monster.type))
+            {
+                monster_array.push([monster_info.name, monster.type, xp_per_hit, parent.G.maps[mapID].name]);
+            }
+        }
     }
+
+    monster_array.sort(function(a,b){
+        return b[2] - a[2];
+    });
 }
 
-monster_array.sort(function(a,b){
-    return b[2] - a[2];
-});
+determine();
+setTimeout(determine, 5 * 60 * 1000);
