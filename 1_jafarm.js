@@ -62,7 +62,7 @@ setInterval(function() {
 }, 1000);
 
 // github
-const baseURL = "https://raw.githubusercontent.com/BarryOSeven/adventureland/master/";
+const baseURL = "http://localhost/";
 
 const allFiles = [
     "1_jafarm.js",
