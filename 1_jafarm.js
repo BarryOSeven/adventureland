@@ -20,37 +20,6 @@ function on_destroy() {
     stop_character("BarryOSeven");
 }
 
-function send_items_michaelk() {
-    const data = {
-        type: "send_items",
-        name: character.name
-    };
-
-    send_cm("MichaelK", data);
-}
-
-function send_items_leonidas() {
-    const data = {
-        type: "send_items",
-        name: character.name
-    };
-
-    send_cm("Leonidas", data);
-}
-
-function send_items_barryoseven() {
-    const data = {
-        type: "send_items",
-        name: character.name
-    };
-
-    send_cm("BarryOSeven", data);
-}
-
-add_top_button("michaelk_button", "MichaelK", send_items_michaelk);
-add_top_button("leonidas_button", "Leonidas", send_items_leonidas);
-add_top_button("barryoseven_button", "BarryOSeven", send_items_barryoseven);
-
 function buy_upgrade_scrolls() {
     if (state !== "idle") {
         return;
