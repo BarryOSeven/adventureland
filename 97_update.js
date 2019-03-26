@@ -10,7 +10,14 @@ const allFiles = [
     "99_monster_determinator.js"
 ];
 
-function pull_code() {
+function on_code_updated() {
+    start_character("JafarM", 1);
+	start_character("MichaelK", 2);
+	start_character("Leonidas", 3);
+	start_character("BarryOSeven", 4);
+}
+
+function pull_code(on_code_updated) {
 	let updated = 0;
     parent.api_call("list_codes", {
         callback: function () {
@@ -54,4 +61,4 @@ function getCodeObject(file) {
     return codeObject;
 }
 
-pull_code();
+pull_code(on_code_updated);
