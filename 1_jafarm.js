@@ -24,7 +24,25 @@ function log_michaelk() {
     send_cm("MichaelK", data);
 }
 
-add_top_button("michael_k_button", "MichaelK", log_michaelk);
+function log_leonidas() {
+    const data = {
+        type: "log"
+    };
+
+    send_cm("Leonidas", data);
+}
+
+function log_barryoseven() {
+    const data = {
+        type: "log"
+    };
+
+    send_cm("BarryOSeven", data);
+}
+
+add_top_button("michaelk_button", "MichaelK", log_michaelk);
+add_top_button("leonidas_button", "Leonidas", log_leonidas);
+add_top_button("barryoseven_button", "BarryOSeven", log_barryoseven);
 
 function on_cm(name, data) {
 	switch(data.type) {

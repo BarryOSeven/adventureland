@@ -13,11 +13,18 @@ function on_cm(name, data) {
 		case "send_money":
 			handle_send_money(data.name);
 			break;
+		case "log":
+			handle_log();
+			break;
 	}
 }
 
 function handle_send_money(name) {
 	send_gold(name, character.gold - 2000);
+}
+
+function handle_log() {
+	game_log("log inventory of barryoseven");
 }
 
 setInterval(function(){
