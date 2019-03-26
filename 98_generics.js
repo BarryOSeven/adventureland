@@ -8,7 +8,8 @@ function on_cm(name, data) {
     }
 
 	switch(data.type) {
-        case "collect_money":
+		case "collect_money":
+			game_log("collecting money");
             handle_collect(data.player);
 			break;
 		case "target":
