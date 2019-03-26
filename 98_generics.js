@@ -1,6 +1,8 @@
 const request_merchant_on_gold = 15000;
 
 function on_cm(name, data) {
+    game_log(name);
+    game_log(JSON.stringify(data));
     if (name !== "JafarM") {
         return;
     }
