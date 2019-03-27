@@ -2,7 +2,7 @@ let state = "idle";
 const request_merchant_on_gold = 15000;
 const gold_offset = 2000;
 
-// const main_character_name = document.title;
+auto_reload("on");
 
 add_top_button("log", "Log", () => {
     const data = {

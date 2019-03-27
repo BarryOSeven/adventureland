@@ -12,6 +12,12 @@ load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
 
+function use_huntersmark(target) {
+	if (can_use("huntersmark")) {
+		use_skill("huntersmark", target);	
+	}
+}
+
 let target;
 
 setInterval(function(){	
@@ -74,6 +80,11 @@ setInterval(function(){
 	}
 
 	let target=get_targeted_monster();
+	
+	if (target) {
+		use_huntersmark(target);
+	}
+	
 	if (!target) {
 		set_message("Waiting for target");
 		return;

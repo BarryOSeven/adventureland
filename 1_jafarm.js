@@ -8,8 +8,6 @@ load_code(97, function() {
 	game_log("Unable to run updates");
 });
 
-auto_reload("on");
-
 function buy_upgrade_scrolls() {
     if (state !== "idle") {
         return;

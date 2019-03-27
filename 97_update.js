@@ -1,4 +1,6 @@
-const baseURL = "http://localhost/";
+const main_server_url = "http://localhost/";
+const backup_server_url = "https://raw.githubusercontent.com/BarryOSeven/adventureland/master/";
+let my_name;
 
 const allFiles = [
     "1_jafarm.js",
@@ -11,27 +13,53 @@ const allFiles = [
 ];
 
 function on_code_updated() {
-    start_character("JafarM", 1);
+    if (my_name !== "JafarM") {
+	start_character("JafarM", 1);    
+    }
+    if (my_name !== "MichaelK") {
 	start_character("MichaelK", 2);
-	start_character("Leonidas", 3);
-	start_character("BarryOSeven", 4);
+    }
+    if (my_name !== "Leonidas") {
+	start_character("Leonidas", 3);  
+    }
+    if (my_name !== "BarryOSeven") {
+	start_character("BarryOSeven", 4);    
+    }
 }
 
 function on_destroy() {
-    stop_character("JafarM");
+    	stop_character("JafarM");
 	stop_character("MichaelK");
 	stop_character("Leonidas");
-    stop_character("BarryOSeven");
+    	stop_character("BarryOSeven");
 }
 
-function pull_code(on_code_updated) {
-	let updated = 0;
+function do_server_check(server_url, on_server_up, on_server_down) {
+	game_log("Performing update server check for " + server_url);
+	const request = new XMLHttpRequest();
+	request.open("GET", server_url + allFiles[0]);
+	request.onreadystatechange = function () {
+	    if (request.readyState === 4 && request.status === 200) {
+		game_log("Server up: pulling code");
+		on_server_up();
+	    } else
+	    if (request.readyState === 4) {
+		game_log("Server down: continuing");
+	        on_server_down();
+	    }
+	}
+	request.send();
+}
+
+function pull_code(server_url, on_code_updated) {
+    let updated = 0;
     parent.api_call("list_codes", {
         callback: function () {
-            game_log("Updating code from server...");
+            game_log("Updating code from server " + server_url);
+		
             for (let file of allFiles) {
                 let request = new XMLHttpRequest();
-                request.open("GET", baseURL + file);
+                request.open("GET", server_url + file);
                 request.onreadystatechange = function () {
                     if (request.readyState === 4 && request.status === 200) {
                         let codeObject = getCodeObject(file);
@@ -41,12 +69,12 @@ function pull_code(on_code_updated) {
                             code: request.responseText
                         };
                         
-						parent.api_call("save_code", data);
-						updated++;
-						if (updated === allFiles.length) {
-							game_log("Code succesfully updated");
-							on_code_updated();
-						}
+			parent.api_call("save_code", data);
+			updated++;
+			if (updated === allFiles.length) {
+				game_log("Code succesfully updated");
+				on_code_updated();
+			}
                     }
                 };
                 request.send();
@@ -68,4 +96,26 @@ function getCodeObject(file) {
     return codeObject;
 }
 
-pull_code(on_code_updated);
+function on_main_server_up() {
+    pull_code(main_server_url, on_code_updated);	
+}
+	
+function on_main_server_down() {
+    do_server_check(backup_server_url, on_backup_server_up, on_backup_server_down);
+}
+
+function on_backup_server_up() {
+    pull_code(backup_server_url, on_code_updated);	
+}
+
+function on_backup_server_down() {
+    on_code_updated();
+}
+
+// only run update service if character is me
+if (character.me) {
+    my_name = character.name;
+    do_server_check(main_server_url, on_main_server_up, on_main_server_down);
+}
+
+

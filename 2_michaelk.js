@@ -12,6 +12,12 @@ load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
 
+function use_charge() {
+	if (can_use("charge")) {
+	    use_skill("charge");	
+	}	
+}
+
 setInterval(function(){
 	loot();
 	
@@ -69,7 +75,9 @@ setInterval(function(){
 		smart_move({to: monster_type});
 		return;
 	}
-
+	
+	use_charge();
+	
 	var target=get_targeted_monster();
 	
 	if (!target) {
