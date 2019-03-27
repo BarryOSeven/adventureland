@@ -54,12 +54,16 @@ setInterval(function(){
 	
 	use_charge();
 	
-	var target=get_targeted_monster();
+	let target=get_targeted_monster();
 	
 	if (!target) {
 		target = get_nearest_hostile({
 			exclude: names
 		});
+
+		if (!target) {
+			target = get_nearest_monster();
+		}
 
 		if(target) {
 			change_target(target);
