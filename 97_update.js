@@ -20,10 +20,10 @@ function on_code_updated() {
 }
 
 function on_destroy() {
-    	stop_character("JafarM");
-        stop_character("MichaelK");
-        stop_character("Leonidas");
-    	stop_character("BarryOSeven");
+    stop_character("JafarM");
+    stop_character("MichaelK");
+    stop_character("Leonidas");
+    stop_character("BarryOSeven");
 }
 
 function do_server_check(server_url, on_server_up, on_server_down) {

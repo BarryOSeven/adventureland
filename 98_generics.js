@@ -3,6 +3,7 @@ const request_merchant_on_gold = 15000;
 const gold_offset = 2000;
 
 const buy_potions_on_gold = 500;
+const names = ["JafarM", "MichaelK", "Leonidas", "BarryOSeven"];
 
 auto_reload("on");
 
@@ -38,6 +39,22 @@ function on_cm(name, data) {
 			handle_log();
 			break;
 	}
+}
+
+function on_party_invite(name) {
+    if (names.indexOf(name) === -1) {
+        return;
+    }
+
+    accept_party_invite(name);
+}
+
+function on_party_request(name) {
+    if (names.indexOf(name) === -1) {
+        return;
+    }
+
+    accept_party_request(name);
 }
 
 function handle_target(name) {

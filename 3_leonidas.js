@@ -12,10 +12,6 @@ load_code(99, function() {
 	game_log("Unable to run monster determinator");
 });
 
-load_code(96, function() {
-    game_log("Unable to run party");
-});
-
 function use_huntersmark(target) {
 	if (can_use("huntersmark")) {
 		use_skill("huntersmark", target);	
