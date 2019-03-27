@@ -1,4 +1,4 @@
-let my_name;
+let my_party_name;
 const names = ["JafarM", "MichaelK", "Leonidas", "BarryOSeven"];
 
 function on_party_invite(name) {
@@ -18,24 +18,24 @@ function on_party_request(name) {
 }
 
 function send_party_invite() {
-    if (my_name !== "JafarM") {
+    if (my_party_name !== "JafarM") {
         send_party_invite("JafarM", false);
     }
 
-    if (my_name !== "MichaelK") {
+    if (my_party_name !== "MichaelK") {
         send_party_invite("MichaelK", false);
     }
 
-    if (my_name !== "Leonidas") {
+    if (my_party_name !== "Leonidas") {
         send_party_invite("Leonidas", false);
     }
 
-    if (my_name !== "BarryOSeven") {
+    if (my_party_name !== "BarryOSeven") {
         send_party_invite("BarryOSeven", false);
     }
 }
 
 if (character.me) {
-    my_name = character.name;
+    my_party_name = character.name;
     send_party_invite();
 }
