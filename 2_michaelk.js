@@ -57,7 +57,9 @@ setInterval(function(){
 	var target=get_targeted_monster();
 	
 	if (!target) {
-		target = get_nearest_monster();
+		target = get_nearest_hostile({
+			exclude: names
+		});
 
 		if(target) {
 			change_target(target);
