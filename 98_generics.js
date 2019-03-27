@@ -108,3 +108,28 @@ function handle_death() {
 	setTimeout(respawn, 15000);
 	return true;
 }
+
+function buy_potions() {
+	// buy potions
+	if (character.gold >= 20) {
+		// buy mana potions
+		if (quantity("mpot0") === 0) {
+			smart_move({to:"potions", return: true}, function() {
+				const potionCost = 20;
+				const amount = Math.floor(character.gold / potionCost);
+				buy_with_gold("mpot0", amount);
+				return;
+			});
+		}
+		
+		// buy health potions
+		if (quantity("hpot0") === 0) {
+			smart_move({to:"potions", return: true}, function() {
+				const potionCost = 20;
+				const amount = Math.floor(character.gold / potionCost);
+				buy_with_gold("hpot0", amount);
+				return;
+			});
+		}
+	}
+}

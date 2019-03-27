@@ -44,25 +44,7 @@ setInterval(function(){
 		use('mp');	
 	}
 
-	// buy mana potions
-	if (quantity("mpot0") === 0) {
-		smart_move({to:"potions", return: true}, function() {
-			const potionCost = 20;
-			const amount = Math.floor(character.gold / potionCost);
-			buy_with_gold("mpot0", amount);
-			return;
-		});
-	}
-	
-	// buy health potions
-	if (quantity("hpot0") === 0) {
-		smart_move({to:"potions", return: true}, function() {
-			const potionCost = 20;
-			const amount = Math.floor(character.gold / potionCost);
-			buy_with_gold("hpot0", amount);
-			return;
-		});
-	}
+	buy_potions();
 	
 	const current_map = get_map();
 	const monster_name = monster_array[0][0];
