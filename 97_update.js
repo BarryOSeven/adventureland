@@ -14,23 +14,23 @@ const allFiles = [
 
 function on_code_updated() {
     if (my_name !== "JafarM") {
-	start_character("JafarM", 1);    
+	    start_character("JafarM", 1);    
     }
     if (my_name !== "MichaelK") {
-	start_character("MichaelK", 2);
+	    start_character("MichaelK", 2);
     }
     if (my_name !== "Leonidas") {
-	start_character("Leonidas", 3);  
+	    start_character("Leonidas", 3);  
     }
     if (my_name !== "BarryOSeven") {
-	start_character("BarryOSeven", 4);    
+	    start_character("BarryOSeven", 4);    
     }
 }
 
 function on_destroy() {
     	stop_character("JafarM");
-	stop_character("MichaelK");
-	stop_character("Leonidas");
+        stop_character("MichaelK");
+        stop_character("Leonidas");
     	stop_character("BarryOSeven");
 }
 
