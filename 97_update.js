@@ -1,4 +1,5 @@
-const baseURL = "http://localhost/";
+const main_server = "http://localhost/";
+const backup_server = "https://raw.githubusercontent.com/BarryOSeven/adventureland/master/";
 
 const allFiles = [
     "1_jafarm.js",
@@ -24,10 +25,10 @@ function on_destroy() {
     	stop_character("BarryOSeven");
 }
 
-function do_server_check(on_server_up, on_server_down) {
-	game_log("Performing update server check");
+function do_server_check(server_url, on_server_up, on_server_down) {
+	game_log("Performing update server check for " + server_url);
 	const request = new XMLHttpRequest();
-	request.open("GET", baseURL + allFiles[0]);
+	request.open("GET", server_url + allFiles[0]);
 	request.onreadystatechange = function () {
 	    if (request.readyState === 4 && request.status === 200) {
 		game_log("Server up: pulling code");
@@ -41,15 +42,15 @@ function do_server_check(on_server_up, on_server_down) {
 	request.send();
 }
 
-function pull_code(on_code_updated) {
+function pull_code(server_url, on_code_updated) {
     let updated = 0;
     parent.api_call("list_codes", {
         callback: function () {
-            game_log("Updating code from server...");
+            game_log("Updating code from server " + server_url);
 		
             for (let file of allFiles) {
                 let request = new XMLHttpRequest();
-                request.open("GET", baseURL + file);
+                request.open("GET", server_url + file);
                 request.onreadystatechange = function () {
                     if (request.readyState === 4 && request.status === 200) {
                         let codeObject = getCodeObject(file);
@@ -86,12 +87,20 @@ function getCodeObject(file) {
     return codeObject;
 }
 
-function on_server_up() {
-    pull_code(on_code_updated);	
+function on_main_server_up() {
+    pull_code(main_server_url, on_code_updated);	
 }
 	
-function on_server_down() {
+function on_main_server_down() {
+    do_server_check(backup_server_url, on_backup_server_up, on_backup_server_down);
+}
+
+function on_backup_server_up() {
+    pull_code(backup_server_url, on_code_updated);	
+}
+
+function on_backup_server_down() {
     on_code_updated();
 }
 
-do_server_check(on_server_up, on_server_down);
+do_server_check(main_server_url, on_main_server_up, on_main_server_down);
