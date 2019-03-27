@@ -2,6 +2,8 @@ let state = "idle";
 const request_merchant_on_gold = 15000;
 const gold_offset = 2000;
 
+const buy_potions_on_gold = 500;
+
 auto_reload("on");
 
 add_top_button("log", "Log", () => {
@@ -111,7 +113,7 @@ function handle_death() {
 
 function buy_potions() {
 	// buy potions
-	if (character.gold >= 20) {
+	if (character.gold >= buy_potions_on_gold) {
 		// buy mana potions
 		if (quantity("mpot0") === 0) {
 			smart_move({to:"potions", return: true}, function() {
