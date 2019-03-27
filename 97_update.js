@@ -59,7 +59,8 @@ function pull_code(server_url, on_code_updated) {
 		
             for (let file of allFiles) {
                 let request = new XMLHttpRequest();
-                request.open("GET", server_url + file);
+                const timestamp = Date.now();
+                request.open("GET", server_url + file + "?nocache=" + timestamp);
                 request.onreadystatechange = function () {
                     if (request.readyState === 4 && request.status === 200) {
                         let codeObject = getCodeObject(file);
@@ -68,7 +69,7 @@ function pull_code(server_url, on_code_updated) {
                             slot: codeObject.slot,
                             code: request.responseText
                         };
-                        
+
 			parent.api_call("save_code", data);
 			updated++;
 			if (updated === allFiles.length) {
