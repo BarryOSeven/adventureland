@@ -2,6 +2,8 @@ let state = "idle";
 const request_merchant_on_gold = 15000;
 const gold_offset = 2000;
 
+auto_reload("on");
+
 add_top_button("log", "Log", () => {
     const data = {
         type: "log"
