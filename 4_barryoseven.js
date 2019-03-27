@@ -28,16 +28,10 @@ setInterval(function(){
 		send_cm("JafarM", data);
 	}
 
-	if (character.max_hp - character.hp > 200) {
-		use('hp');	
-	}
-	
-	if (character.max_mp - character.mp > 300) {
-		use('mp');	
-	}
+	use_potions();
 
 	buy_potions();
-	
+
 	const current_map = get_map();
 	const monster_name = monster_array[0][0];
 	const monster_type = monster_array[0][1];

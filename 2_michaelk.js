@@ -36,13 +36,7 @@ setInterval(function(){
 		send_cm("JafarM", data);
 	}
 	
-	if (character.max_hp - character.hp > 200) {
-		use('hp');	
-	}
-
-	if ((character.max_mp - character.mp > 300) || (character.mp <= 3)) {
-		use('mp');	
-	}
+	use_potions();
 
 	buy_potions();
 	

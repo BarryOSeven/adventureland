@@ -133,3 +133,13 @@ function buy_potions() {
 		}
 	}
 }
+
+function use_potions() {
+	if (character.max_hp - character.hp > 200 && quantity("hpot0") > 0) {
+		use('hp');	
+	}
+
+	if ((character.max_mp - character.mp > 300) || (character.mp <= 3) && quantity("mpot0") > 0) {
+		use('mp');	
+	}
+}

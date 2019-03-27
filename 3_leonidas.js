@@ -39,14 +39,8 @@ setInterval(function(){
 	}
 
 
-	if (character.max_hp - character.hp > 200) {
-		use('hp');	
-	}
+	use_potions();
 	
-	if (character.max_mp - character.mp > 300) {
-		use('mp');	
-	}
-
 	buy_potions();
 
 	const current_map = get_map();
