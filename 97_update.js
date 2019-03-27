@@ -1,5 +1,5 @@
-const main_server = "http://localhost/";
-const backup_server = "https://raw.githubusercontent.com/BarryOSeven/adventureland/master/";
+const main_server_url = "http://localhost/";
+const backup_server_url = "https://raw.githubusercontent.com/BarryOSeven/adventureland/master/";
 
 const allFiles = [
     "1_jafarm.js",
@@ -60,12 +60,12 @@ function pull_code(server_url, on_code_updated) {
                             code: request.responseText
                         };
                         
-						parent.api_call("save_code", data);
-						updated++;
-						if (updated === allFiles.length) {
-							game_log("Code succesfully updated");
-							on_code_updated();
-						}
+			parent.api_call("save_code", data);
+			updated++;
+			if (updated === allFiles.length) {
+				game_log("Code succesfully updated");
+				on_code_updated();
+			}
                     }
                 };
                 request.send();
