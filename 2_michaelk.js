@@ -13,8 +13,8 @@ load_code(99, function() {
 });
 
 function use_charge() {
-	if (can_use("Charge")) {
-	    use_skill("Charge");	
+	if (can_use("charge")) {
+	    use_skill("charge");	
 	}	
 }
 
