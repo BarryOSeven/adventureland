@@ -70,9 +70,9 @@ setInterval(function(){
 		return;
 	}
 
-	if (can_use("Charge")) {
-	    use("Charge");	
-	}
+// 	if (can_use("Charge")) {
+// 	    use_skill("Charge");	
+// 	}
 	
 	var target=get_targeted_monster();
 	
