@@ -1,5 +1,6 @@
 const main_server_url = "http://localhost/";
 const backup_server_url = "https://raw.githubusercontent.com/BarryOSeven/adventureland/master/";
+let my_name;
 
 const allFiles = [
     "1_jafarm.js",
@@ -12,10 +13,18 @@ const allFiles = [
 ];
 
 function on_code_updated() {
-    	start_character("JafarM", 1);
+    if (my_name !== "JafarM") {
+	start_character("JafarM", 1);    
+    }
+    if (my_name !== "MichaelK") {
 	start_character("MichaelK", 2);
-	start_character("Leonidas", 3);
-	start_character("BarryOSeven", 4);
+    }
+    if (my_name !== "Leonidas") {
+	start_character("Leonidas", 3);  
+    }
+    if (my_name !== "BarryOSeven") {
+	start_character("BarryOSeven", 4);    
+    }
 }
 
 function on_destroy() {
@@ -105,6 +114,7 @@ function on_backup_server_down() {
 
 // only run update service if character is me
 if (character.me) {
+    my_name = character.name;
     do_server_check(main_server_url, on_main_server_up, on_main_server_down);
 }
 
