@@ -81,7 +81,9 @@ setInterval(function(){
 
 	let target=get_targeted_monster();
 	
-	use_huntersmark(target);
+	if (target) {
+		use_huntersmark(target);
+	}
 	
 	if (!target) {
 		set_message("Waiting for target");
