@@ -8,6 +8,10 @@ load_code(97, function() {
 	game_log("Unable to run updates");
 });
 
+load_code(96, function() {
+    game_log("Unable to run party");
+});
+
 function buy_upgrade_scrolls() {
     if (state !== "idle") {
         return;

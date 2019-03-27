@@ -7,6 +7,7 @@ const allFiles = [
     "2_michaelk.js",
     "3_leonidas.js",
     "4_barryoseven.js",
+    "96_party.js",
     "97_update.js",
     "98_generics.js",
     "99_monster_determinator.js"
