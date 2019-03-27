@@ -13,10 +13,21 @@ const allFiles = [
 ];
 
 function on_code_updated() {
-    start_character("JafarM", 1);    
-    start_character("MichaelK", 2);
-    start_character("Leonidas", 3);  
-    start_character("BarryOSeven", 4);    
+    if (currentPlayer !== "JafarM") {
+        start_character("JafarM", 1);    
+    }
+    
+    if (currentPlayer !== "MichaelK") {
+        start_character("MichaelK", 2);
+    }
+    
+    if (currentPlayer !== "Leonidas") {
+        start_character("Leonidas", 3);
+    }
+
+    if (currentPlayer !== "BarryOSeven") {
+        start_character("BarryOSeven", 4);
+    }    
 }
 
 function on_destroy() {

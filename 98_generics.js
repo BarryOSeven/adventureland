@@ -4,6 +4,7 @@ const gold_offset = 2000;
 
 const buy_potions_on_gold = 500;
 const names = ["JafarM", "MichaelK", "Leonidas", "BarryOSeven"];
+const currentPlayer = parent.parent.parent.character.name;
 
 auto_reload("on");
 
