@@ -70,6 +70,10 @@ setInterval(function(){
 		return;
 	}
 
+	if (can_use("Charge")) {
+	    use("Charge");	
+	}
+	
 	var target=get_targeted_monster();
 	
 	if (!target) {
