@@ -175,6 +175,9 @@ function equip_strongest_items() {
 			case "coat":
 				equip_strongest_chest(i, item);
 				break;
+			case "wshield":
+				equip_strongest_offhand(i, item);
+				break;
 		}
 	}
 
@@ -223,11 +226,30 @@ function equip_strongest_gloves(slot, item) {
 	}
 }
 
+function equip_strongest_offhand(slot, item) {
+	const current_offhand = character.slots.offhand;
+
+	const current_properties = item_properties(current_offhand);
+	const current_value = calculate_value(current_properties);
+
+	const properties = item_properties(item);
+	const value = calculate_value(properties);
+	
+	if (!current_offhand) {
+		equip(slot);
+	}
+
+	if (current_value < value) {
+		unequip("offhand");
+		equip(slot);
+	}
+}
+
 // armor + stat + resistance
 function equip_strongest_helmet(slot, item) {
 	const current_helmet = character.slots.helmet;
 
-	const current_properties = item_properties(current_gloves);
+	const current_properties = item_properties(current_helmet);
 	const current_value = calculate_value(current_properties);
 
 	const properties = item_properties(item);

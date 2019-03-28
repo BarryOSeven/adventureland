@@ -16,7 +16,7 @@ load_code(96, function() {
 });
 
 add_top_button("upgrade", "Upgrade", () => {
-    start_upgrade_item("coat");
+    start_upgrade_item("wshield");
 });
 
 function buy_upgrade_scrolls(on_upgrade_scrolls_bought) {
