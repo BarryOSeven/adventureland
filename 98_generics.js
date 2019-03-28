@@ -269,7 +269,7 @@ function equip_strongest_helmet(slot, item) {
 function equip_strongest_shoes(slot, item) {
 	const current_shoes = character.slots.shoes;
 
-	const current_properties = item_properties(current_gloves);
+	const current_properties = item_properties(current_shoes);
 	const current_value = calculate_value(current_properties);
 
 	const properties = item_properties(item);
@@ -289,7 +289,7 @@ function equip_strongest_shoes(slot, item) {
 function equip_strongest_chest(slot, item) {
 	const current_chest = character.slots.chest;
 
-	const current_properties = item_properties(current_gloves);
+	const current_properties = item_properties(current_chest);
 	const current_value = calculate_value(current_properties);
 
 	const properties = item_properties(item);
@@ -310,7 +310,7 @@ function equip_strongest_chest(slot, item) {
 function equip_strongest_pants(slot, item) {
 	const current_pants = character.slots.pants;
 
-	const current_properties = item_properties(current_gloves);
+	const current_properties = item_properties(current_pants);
 	const current_value = calculate_value(current_properties);
 
 	const properties = item_properties(item);
