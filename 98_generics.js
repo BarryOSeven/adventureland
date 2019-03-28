@@ -22,6 +22,36 @@ add_top_button("log", "Log", () => {
     send_cm(["JafarM", "MichaelK", "Leonidas", "BarryOSeven"], data);
 });
 
+function locate_item(name) {
+	for(var i=0; i<42; i++)
+	{
+		if(!character.items[i]) {
+			continue;
+		}
+
+		const item = character.items[i];
+
+		if (item.name === name) {
+			return item;
+		}
+	}
+}
+
+function locate_item_slot(name) {
+	for(var i=0; i<42; i++)
+	{
+		if(!character.items[i]) {
+			continue;
+		}
+
+		const item = character.items[i];
+		
+		if (item.name === name) {
+			return i;
+		}
+	}
+}
+
 function on_cm(name, data) {
     const characters = ["JafarM", "MichaelK", "Leonidas", "BarryOSeven"];
     

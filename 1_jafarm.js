@@ -12,6 +12,8 @@ load_code(96, function() {
     game_log("Unable to run party");
 });
 
+add_top_button("upgrade", "Upgrade", upgrade_items);
+
 function buy_upgrade_scrolls() {
     if (state !== "idle") {
         return;
@@ -58,7 +60,55 @@ function combine_items() {
 }
 
 function upgrade_items() {
-    //
+    if (state !== "idle") {
+        return;
+    }
+
+    state = "item_upgrade";
+
+    const upgrade_name = "staff";
+
+    function on_item_upgraded() {
+        state = "idle";
+    }
+
+    function on_item_bought() {
+        state = "item_upgrade";
+        upgrade_item(upgrade_name, on_item_upgraded)
+    }
+
+    if (quantity(upgrade_name) === 0) {
+        state = "idle";
+        buy_item(upgrade_name, on_item_bought);
+    } else {
+        upgrade_item(upgrade_name, on_item_upgraded);
+    }
+}
+
+function upgrade_item(item_name, on_item_upgraded) {
+    function on_upgrade_location() {
+        const item_num = locate_item_slot(item_name);
+        const scroll_num = locate_item_slot("scroll0");
+        
+        upgrade(item_num, scroll_num);
+        on_item_upgraded();
+    }
+
+    go_to_upgrade(on_upgrade_location);
+}
+
+function go_to_upgrade(on_upgrade_location) {
+    function on_in_main_town() {
+        smart_move({to: "upgrade"}, on_upgrade_location);
+    }
+
+    const destination_map = "main";
+
+    if (character.map !== destination_map) {
+        smart_move(destination_map, on_in_main_town);
+    } else {
+        on_in_main_town();
+    }
 }
 
 function go_to_basics(on_potion_location) {
@@ -66,10 +116,16 @@ function go_to_basics(on_potion_location) {
         smart_move({to: "potions"}, on_potion_location);
     }
 
-    smart_move("main", on_in_main_town);
+    const destination_map = "main";
+
+    if (character.map !== destination_map) {
+        smart_move(destination_map, on_in_main_town);
+    } else {
+        on_in_main_town();
+    }
 }
 
-function buy_item(item_name) {
+function buy_item(item_name, on_item_bought) {
     if (state !== "idle") {
         return;
     }
@@ -79,6 +135,7 @@ function buy_item(item_name) {
     function on_near_basics() {
         buy_with_gold(item_name, 1);
         state = "idle";
+        on_item_bought();
     }
 
     go_to_basics(on_near_basics);
@@ -101,5 +158,5 @@ setInterval(function() {
     buy_combine_scrolls();
 
     combine_items();
-    upgrade_items();
+    // upgrade_items();
 }, 1000);
