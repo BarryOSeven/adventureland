@@ -12,7 +12,9 @@ load_code(96, function() {
     game_log("Unable to run party");
 });
 
-add_top_button("upgrade", "Upgrade", upgrade_items);
+add_top_button("upgrade", "Upgrade", () => {
+    upgrade_item("bow");
+});
 
 function buy_upgrade_scrolls() {
     if (state !== "idle") {
@@ -59,17 +61,24 @@ function combine_items() {
         // combine items until level x
 }
 
-function upgrade_items() {
+function start_upgrade_item(item_name) {
     if (state !== "idle") {
         return;
     }
 
     state = "item_upgrade";
 
-    const upgrade_name = "staff";
+    const upgrade_name = item_name;
+
+    const item = locate_item(upgrade_name);
+
+    if (item && item.level === 7) {
+        return;
+    }
 
     function on_item_upgraded() {
         state = "idle";
+        start_upgrade_item(item_name);
     }
 
     function on_item_bought() {
