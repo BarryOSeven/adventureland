@@ -13,7 +13,7 @@ load_code(96, function() {
 });
 
 add_top_button("upgrade", "Upgrade", () => {
-    upgrade_item("bow");
+    start_upgrade_item("bow");
 });
 
 function buy_upgrade_scrolls() {
