@@ -1,5 +1,8 @@
 //JafarM
 
+const amount_of_upgrade_scrolls_to_buy = 50;
+const amount_of_combine_scrolls_to_buy = 50;
+
 load_code(98, function() {
 	game_log("Unable to run generics");
 });
@@ -13,10 +16,10 @@ load_code(96, function() {
 });
 
 add_top_button("upgrade", "Upgrade", () => {
-    start_upgrade_item("bow");
+    start_upgrade_item("coat");
 });
 
-function buy_upgrade_scrolls() {
+function buy_upgrade_scrolls(on_upgrade_scrolls_bought) {
     if (state !== "idle") {
         return;
     }
@@ -27,8 +30,9 @@ function buy_upgrade_scrolls() {
         state = "buy_upgrade_scrolls";
 
 		smart_move({to: "scrolls"}, function() {
-            buy_with_gold("scroll0", 10);	
+            buy_with_gold("scroll0", amount_of_upgrade_scrolls_to_buy);	
             state = "idle";
+            on_upgrade_scrolls_bought();
 		});
 		return;
 	}
@@ -45,7 +49,7 @@ function buy_combine_scrolls() {
         state = "buy_combine_scrolls";
 
 		smart_move({to: "scrolls"}, function() {
-            buy_with_gold("cscroll0", 10);	
+            buy_with_gold("cscroll0", amount_of_combine_scrolls_to_buy);	
             state = "idle";
 		});
 		return;
@@ -66,7 +70,12 @@ function start_upgrade_item(item_name) {
         return;
     }
 
-    state = "item_upgrade";
+    if (quantity("scroll0") === 0) {
+        buy_upgrade_scrolls(() => {
+            start_upgrade_item(item_name);
+        });
+        return;
+    }
 
     const upgrade_name = item_name;
 
@@ -75,6 +84,8 @@ function start_upgrade_item(item_name) {
     if (item && item.level === 7) {
         return;
     }
+
+    state = "item_upgrade";
 
     function on_item_upgraded() {
         state = "idle";
@@ -141,13 +152,13 @@ function buy_item(item_name, on_item_bought) {
 
     state = "buying_items";
 
-    function on_near_basics() {
+    function on_location() {
         buy_with_gold(item_name, 1);
         state = "idle";
         on_item_bought();
     }
 
-    go_to_basics(on_near_basics);
+    go_to_upgrade(on_location);
 }
 
 function equip_item(name, item_name) {
@@ -163,7 +174,6 @@ setInterval(function() {
     // buy_item("sword");
     // equip_item("MichaelK", "str")
 
-    buy_upgrade_scrolls();
     buy_combine_scrolls();
 
     combine_items();
