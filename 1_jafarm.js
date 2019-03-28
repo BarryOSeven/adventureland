@@ -61,6 +61,14 @@ function upgrade_items() {
     //
 }
 
+function go_to_basics(on_potion_location) {
+    function on_in_main_town() {
+        smart_move({to: "potions"}, on_potion_location);
+    }
+
+    smart_move("main", on_in_main_town);
+}
+
 function buy_item(item_name) {
     if (state !== "idle") {
         return;
@@ -68,16 +76,12 @@ function buy_item(item_name) {
 
     state = "buying_items";
 
-    function on_in_main_town() {
-        smart_move({to: "potions"}, on_near_potions);
-    }
-
-    function on_near_potions() {
-        game_log("Buy item");
+    function on_near_basics() {
+        buy_with_gold(item_name, 1);
         state = "idle";
     }
 
-    smart_move("main", on_in_main_town);
+    go_to_basics(on_near_basics);
 }
 
 function equip_item(name, item_name) {
@@ -91,7 +95,7 @@ setInterval(function() {
     }
 
     // buy_item("sword");
-    equip_item("MichaelK", "str")
+    // equip_item("MichaelK", "str")
 
     buy_upgrade_scrolls();
     buy_combine_scrolls();

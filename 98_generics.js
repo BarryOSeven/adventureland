@@ -8,6 +8,12 @@ const currentPlayer = parent.parent.character.name;
 
 auto_reload("on");
 
+// temporary game loop
+setInterval(function() {
+	equip_strongest_items();
+}, 30 * 1000);
+// ------
+
 add_top_button("log", "Log", () => {
     const data = {
         type: "log"
@@ -62,7 +68,94 @@ function on_party_request(name) {
 }
 
 function handle_equip() {
-	game_log("Implement equipping item");
+	equip_strongest_items();
+}
+
+function equip_strongest_items() {
+	const class_of_character = character.ctype;
+
+	for(var i=0; i<42; i++)
+	{
+		if(!character.items[i]) {
+			continue;
+		}
+		
+		const item = character.items[i];
+		
+		if (item.name === "hpot0" || item.name === "mpot0") {
+			continue;
+		}
+		
+		switch (item.name) {
+			case "stramulet":
+				if (class_of_character !== "warrior") {
+					break;
+				}
+				equip_strongest_amulet(i, item);
+				break;
+			case "intamulet":
+				if (class_of_character !== "mage") {
+					break;
+				}
+				equip_strongest_amulet(i, item);
+				break;
+			case "dexamulet":
+				if (class_of_character !== "ranger") {
+					break;
+				}
+				equip_strongest_amulet(i, item);
+				break;
+			case "hpamulet":
+				if (class_of_character !== "merchant") {
+					break;
+				}
+				equip_strongest_amulet(i, item);
+				break;
+			case "wgloves":
+				equip_strongest_gloves(i, item);
+				break;
+		}
+
+		// switch (item.type) {
+		// 	case "gloves":
+		// 		equip_strongest_gloves(item);
+		// 		break;
+		// }
+	}
+
+}
+
+// armor + stat + resistance
+function equip_strongest_gloves(slot, item) {
+	const current_gloves = character.slots.gloves;
+
+	const current_properties = item_properties(current_gloves);
+	const current_value = current_properties.armor + current_properties.resistance + current_properties.stat;
+
+	const properties = item_properties(item);
+	const value = properties.armor + properties.resistance + properties.stat;
+	
+	if (!current_gloves) {
+		equip(slot);
+	}
+
+	if (current_value < value) {
+		unequip("gloves");
+		equip(slot);
+	}
+}
+
+function equip_strongest_amulet(slot, item) {
+	const current_amulet = character.slots.amulet;
+
+	if (!current_amulet) {
+		equip(slot);
+	}
+
+	if (current_amulet.level < item.level) {
+		unequip("amulet");
+		equip(slot);
+	}
 }
 
 function handle_target(name) {
@@ -108,7 +201,7 @@ function handle_send_items(name) {
 	for(var i=0;i<42;i++)
 	{
 		if(!character.items[i]) continue;
-		const item=character.items[i];
+		const item = character.items[i];
 	
 		if (item.name === "hpot0" || item.name === "mpot0") {
 			continue;
@@ -125,7 +218,7 @@ function handle_log() {
 	for(var i=0;i<42;i++)
 	{
 		if(!character.items[i]) continue;
-		const item=character.items[i];
+		const item = character.items[i];
 		game_log(item.name);
 	}
 }

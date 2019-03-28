@@ -18,7 +18,7 @@ function use_charge() {
 	}	
 }
 
-setInterval(function(){
+setInterval(function() {
 	loot();
 	
 	if(character.rip || is_moving(character)) {
