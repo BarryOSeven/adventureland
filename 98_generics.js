@@ -176,6 +176,12 @@ function equip_strongest_items() {
 				equip_strongest_chest(i, item);
 				break;
 			case "wshield":
+				if (class_of_character !== "mage") {
+					break;
+				} else
+				if (class_of_character !== "ranger") {
+					break;
+				}
 				equip_strongest_offhand(i, item);
 				break;
 		}
