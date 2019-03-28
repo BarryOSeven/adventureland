@@ -116,6 +116,6 @@ function on_backup_server_down() {
     on_code_updated();
 }
 
-do_server_check(main_server_url, on_main_server_up, on_main_server_down);
-
-
+if (currentPlayer === character.name) {
+    do_server_check(main_server_url, on_main_server_up, on_main_server_down);
+}
