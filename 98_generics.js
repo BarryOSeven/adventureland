@@ -115,12 +115,6 @@ function equip_strongest_items() {
 				equip_strongest_gloves(i, item);
 				break;
 		}
-
-		// switch (item.type) {
-		// 	case "gloves":
-		// 		equip_strongest_gloves(item);
-		// 		break;
-		// }
 	}
 
 }
