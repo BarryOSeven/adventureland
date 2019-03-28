@@ -27,6 +27,9 @@ function on_cm(name, data) {
 		case "collect_money":
             handle_collect(name, data);
 			break;
+		case "equip_item":
+			handle_equip();
+			break;
 		case "target":
 			handle_target(name)
 			break;
@@ -56,6 +59,10 @@ function on_party_request(name) {
     }
 
     accept_party_request(name);
+}
+
+function handle_equip() {
+	game_log("Implement equipping item");
 }
 
 function handle_target(name) {

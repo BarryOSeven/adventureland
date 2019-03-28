@@ -18,6 +18,18 @@ function use_huntersmark(target) {
 	}
 }
 
+function use_supershot(target) {
+	if (can_use("supershot")) {
+		use_skill("supershot", target);
+	}
+}
+
+function use_poisonarrow(target) {
+	if (can_use("poisonarrow")) {
+		use_skill("poisonarrow", target);
+	}
+}
+
 let target;
 
 setInterval(function(){	
@@ -59,6 +71,8 @@ setInterval(function(){
 	
 	if (target) {
 		use_huntersmark(target);
+		use_supershot(target);
+		use_poisonarrow(target);
 	}
 	
 	if (!target) {

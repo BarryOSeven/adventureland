@@ -48,11 +48,54 @@ function buy_combine_scrolls() {
 	}
 }
 
+function combine_items() {
+    // check for combinable items
+    // set state to combine_items
+
+    // if three amulets of same strength
+        // go to combine guy
+        // combine items until level x
+}
+
+function upgrade_items() {
+    //
+}
+
+function buy_item(item_name) {
+    if (state !== "idle") {
+        return;
+    }
+
+    state = "buying_items";
+
+    function on_in_main_town() {
+        smart_move({to: "potions"}, on_near_potions);
+    }
+
+    function on_near_potions() {
+        game_log("Buy item");
+        state = "idle";
+    }
+
+    smart_move("main", on_in_main_town);
+}
+
+function equip_item(name, item_name) {
+    // send item to other character
+    // send cm with item id
+}
+
 setInterval(function() {
 	if (is_moving(character)) {
 		return;
     }
-    
+
+    // buy_item("sword");
+    equip_item("MichaelK", "str")
+
     buy_upgrade_scrolls();
     buy_combine_scrolls();
+
+    combine_items();
+    upgrade_items();
 }, 1000);
