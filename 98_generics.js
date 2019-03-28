@@ -45,7 +45,7 @@ function locate_item_slot(name) {
 		}
 
 		const item = character.items[i];
-		
+
 		if (item.name === name) {
 			return i;
 		}
@@ -144,20 +144,23 @@ function equip_strongest_items() {
 			case "wgloves":
 				equip_strongest_gloves(i, item);
 				break;
+			case "wbreeches":
+				equip_strongest_pants(i, item);
+				break;
 		}
 	}
 
 }
 
-// armor + stat + resistance
+// armor + stat + resistance + speed
 function equip_strongest_gloves(slot, item) {
 	const current_gloves = character.slots.gloves;
 
 	const current_properties = item_properties(current_gloves);
-	const current_value = current_properties.armor + current_properties.resistance + current_properties.stat;
+	const current_value = current_properties.armor + current_properties.resistance + current_properties.stat + current_properties.speed;
 
 	const properties = item_properties(item);
-	const value = properties.armor + properties.resistance + properties.stat;
+	const value = properties.armor + properties.resistance + properties.stat + properties.speed;
 	
 	if (!current_gloves) {
 		equip(slot);
@@ -165,6 +168,26 @@ function equip_strongest_gloves(slot, item) {
 
 	if (current_value < value) {
 		unequip("gloves");
+		equip(slot);
+	}
+}
+
+// armor + stat + resistance
+function equip_strongest_pants(slot, item) {
+	const current_pants = character.slots.pants;
+
+	const current_properties = item_properties(current_pants);
+	const current_value = current_properties.armor + current_properties.resistance + current_properties.stat;
+
+	const properties = item_properties(item);
+	const value = properties.armor + properties.resistance + properties.stat;
+	
+	if (!current_pants) {
+		equip(slot);
+	}
+
+	if (current_value < value) {
+		unequip("pants");
 		equip(slot);
 	}
 }
