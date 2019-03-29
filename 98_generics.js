@@ -322,6 +322,9 @@ function calculate_value(item_stats) {
 	let value = 0;
 
 	for (const stat in item_stats) {
+		if (stat === "hp" || stat === "mp") {
+			value = stat / 100; // normalize high values
+		} else
 		if (character.ctype === "mage" && stat === "int") {
 			value += 2 * item_stats[stat];
 		} else
