@@ -18,6 +18,18 @@ function use_charge() {
 	}	
 }
 
+function call_party_members(monster_type) {
+	// send cm to party members to join farming
+	const data = {
+		type: "move_to_farm_location",
+		x: character.real_x,
+		y: character.real_y,
+		map: character.map
+	}
+
+	send_cm(["Leonidas", "BarryOSeven"], data);
+}
+
 setInterval(function() {
 	loot();
 	
@@ -41,16 +53,20 @@ setInterval(function() {
 	buy_potions();
 	
 	const current_map = get_map();
-	const monster_name = monster_array[0][0];
+	// const monster_name = monster_array[0][0];
 	const monster_type = monster_array[0][1];
 	const monster_map_name = monster_array[0][3];
 	
 	if (current_map.name !== monster_map_name) {
-		state = "idle";
+		state = "moving_to_farm_location";
 		game_log("Moving to monster type: " + monster_type + " on map " + monster_map_name);
-		smart_move({to: monster_type});
+		smart_move({to: monster_type}, function() {
+			state = "idle";
+		});
 		return;
 	}
+
+	call_party_members(monster_type);
 	
 	use_charge();
 	

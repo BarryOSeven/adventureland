@@ -66,6 +66,9 @@ function on_cm(name, data) {
 		case "equip_item":
 			handle_equip();
 			break;
+		case "move_to_farm_location":
+			handle_move_to_farm_location(data.x, data.y, data.map);
+			break;
 		case "target":
 			handle_target(name)
 			break;
@@ -79,6 +82,48 @@ function on_cm(name, data) {
 			handle_log();
 			break;
 	}
+}
+
+function handle_move_to_farm_location(x, y, map) {
+	if (state !== "idle") {
+		return;
+	}
+
+	if (is_in_range(x, y, map)) {
+		return;
+	}
+
+	state = "moving_to_farm_location";
+
+	smart_move({x: x, y: y, map: map}, function() {
+		state = "idle"
+	});
+}
+
+function is_in_range(x, y, map) {
+	const range = 10;
+
+	const current_map = get_map();
+
+	if (current_map !== map) {
+		return false;
+	}
+
+	const character_x = character.real_x;
+	const x_delta = Math.abs(character_x - x);
+	
+	if (x_delta > 10) {
+		return false;
+	}
+
+	const character_y = character.real_y;
+	const y_delta = Math.abs(character_y - y);
+	
+	if (y_delta > 10) {
+		return false;
+	}
+
+	return true;
 }
 
 function on_party_invite(name) {
@@ -196,6 +241,13 @@ function equip_strongest_items() {
 					break;
 				}
 				equip_strongest("belt", i, item);
+				break;
+			// book of knowledge
+			case "wbook0":
+				if (class_of_character !== "mage") {
+					break;
+				}
+				equip_strongest("offhand", i, item);
 				break;
 		}
 	}
