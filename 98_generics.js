@@ -306,8 +306,11 @@ function equip_strongest_ring(slot, item) {
 	const current_ring_1 = character.slots.ring1;
 	const current_ring_2 = character.slots.ring2;
 
-	const current_value_1 = calculate_value(current_ring_1);
-	const current_value_2 = calculate_value(current_ring_2);
+	const properties_1 = item_properties(current_ring_1);
+	const current_value_1 = calculate_value(properties_1);
+
+	const properties2 = item_properties(current_ring_2);
+	const current_value_2 = calculate_value(properties2);
 
 	if (current_value_1 < current_value_2) {
 		equip_strongest("ring1", slot, item);
@@ -320,8 +323,11 @@ function equip_strongest_earring(slot, item) {
 	const current_earring_1 = character.slots.ring1;
 	const current_earring_2 = character.slots.ring2;
 
-	const current_value_1 = calculate_value(current_earring_1);
-	const current_value_2 = calculate_value(current_earring_2);
+	const properties_1 = item_properties(current_earring_1);
+	const current_value_1 = calculate_value(properties_1);
+
+	const properties_2 = item_properties(current_earring_2);
+	const current_value_2 = calculate_value(properties_2);
 
 	if (current_value_1 < current_value_2) {
 		equip_strongest("earring1", slot, item);
