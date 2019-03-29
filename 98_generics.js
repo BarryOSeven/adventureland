@@ -112,14 +112,14 @@ function is_in_range(x, y, map) {
 	const character_x = character.real_x;
 	const x_delta = Math.abs(character_x - x);
 	
-	if (x_delta > 10) {
+	if (x_delta > range) {
 		return false;
 	}
 
 	const character_y = character.real_y;
 	const y_delta = Math.abs(character_y - y);
 	
-	if (y_delta > 10) {
+	if (y_delta > range) {
 		return false;
 	}
 
@@ -335,7 +335,7 @@ function calculate_value(item_stats) {
 
 	for (const stat in item_stats) {
 		if (stat === "hp" || stat === "mp") {
-			value = stat / 100; // normalize high values
+			value += item_stats[stat] / 100; // normalize high values
 		} else
 		if (character.ctype === "mage" && stat === "int") {
 			value += 2 * item_stats[stat];
@@ -364,11 +364,6 @@ function equip_strongest(characterslot, slot, item) {
 
 	const properties = item_properties(item);
 	const value = calculate_value(properties);
-	
-	if (item.name === "dexbelt") {
-		game_log("cV " + current_value);
-		game_log("V " + value);
-	}
 
 	if (!currently_wearing) {
 		equip(slot);
