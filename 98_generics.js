@@ -96,7 +96,7 @@ function handle_move_to_farm_location(x, y, map) {
 	state = "moving_to_farm_location";
 
 	smart_move({x: x, y: y, map: map}, function() {
-		state = "idle"
+		state = "attacking"
 	});
 }
 
@@ -242,6 +242,18 @@ function equip_strongest_items() {
 				}
 				equip_strongest("belt", i, item);
 				break;
+			case "intbelt":
+				if (class_of_character !== "mage") {
+					break;
+				}
+				equip_strongest("belt", i, item);
+				break;
+			case "strbelt":
+				if (class_of_character !== "warrior") {
+					break;
+				}
+				equip_strongest("belt", i, item);
+				break;
 			// book of knowledge
 			case "wbook0":
 				if (class_of_character !== "mage") {
@@ -353,6 +365,11 @@ function equip_strongest(characterslot, slot, item) {
 	const properties = item_properties(item);
 	const value = calculate_value(properties);
 	
+	if (item.name === "dexbelt") {
+		game_log("cV " + current_value);
+		game_log("V " + value);
+	}
+
 	if (!currently_wearing) {
 		equip(slot);
 	}
