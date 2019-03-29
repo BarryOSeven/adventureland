@@ -21,6 +21,10 @@ add_top_button("upgrade", "Upgrade", () => {
     start_upgrade_item("shoes");
 });
 
+add_top_button("combine", "Combine", () => {
+    start_combine_item();
+});
+
 function buy_upgrade_scrolls(on_upgrade_scrolls_bought) {
     if (state !== "idle") {
         return;
@@ -58,13 +62,60 @@ function buy_combine_scrolls() {
 	}
 }
 
-function combine_items() {
-    // check for combinable items
-    // set state to combine_items
+function start_combine_item() {
+    if (state !== "idle") {
+        return;
+    }
 
-    // if three amulets of same strength
-        // go to combine guy
-        // combine items until level x
+    if (quantity("cscroll0") === 0) {
+        buy_combine_scrolls(() => {
+            start_combine_item();
+        });
+    }
+
+    const items = locate_combinable_items();
+
+    let countObject = {};
+
+    for (const itemObject of items) {
+        const hash = itemObject.item.name + itemObject.item.level;
+
+        if (!countObject[hash]) {
+            countObject[hash] = {
+                counter: 1,
+                items: [itemObject]
+            };
+        } else {
+            countObject[hash].counter = countObject[hash].counter + 1;
+            countObject[hash].items.push(itemObject);
+        }
+    }
+
+    let items_to_combine;
+    for (const hash in countObject) {
+        const countItem = countObject[hash];
+        if (countItem.counter >= 3) {
+            items_to_combine = countItem.items;
+            break;
+        }
+    }
+
+    if (items_to_combine) {
+        combine_items(items_to_combine, () => {
+            //
+        });
+    }
+}
+
+function combine_items(items_to_combine, on_item_combined) {
+    function on_upgrade_location() {
+        const scroll_num = locate_item_slot("cscroll0");
+        
+        compound(items_to_combine[0].slot, items_to_combine[1].slot, items_to_combine[2].slot, scroll_num);
+        on_item_combined();
+    }
+
+    go_to_upgrade(on_upgrade_location);
 }
 
 function start_upgrade_item(item_name) {
@@ -181,8 +232,11 @@ setInterval(function() {
     // buy_item("sword");
     // equip_item("MichaelK", "str")
 
+    use_potions();
+
+    buy_potions();
+    
     buy_combine_scrolls();
 
-    combine_items();
     // upgrade_items();
 }, 1000);
