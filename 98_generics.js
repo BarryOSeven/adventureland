@@ -207,7 +207,20 @@ function calculate_value(item_stats) {
 	let value = 0;
 
 	for (const stat in item_stats) {
-		value += item_stats[stat];
+		if (character.ctype === "mage" && stat === "int") {
+			value += 2 * item_stats[stat];
+		} else
+		if (character.ctype === "warrior" && stat === "str") {
+			value += 2 * item_stats[stat];
+		} else
+		if (character.ctype === "ranger" && stat === "dex") {
+			value += 2 * item_stats[stat];
+		} else
+		if (character.ctype === "merchant" && stat === "vit") {
+			value += 2 * item_stats[stat];
+		} else {
+			value += item_stats[stat];
+		}
 	}
 
 	return value;
