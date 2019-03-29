@@ -141,6 +141,7 @@ function equip_strongest_items() {
 				}
 				equip_strongest_amulet(i, item);
 				break;
+			case "gloves":
 			case "wgloves":
 				equip_strongest_gloves(i, item);
 				break;
