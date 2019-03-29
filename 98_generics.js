@@ -249,9 +249,73 @@ function equip_strongest_items() {
 				}
 				equip_strongest("offhand", i, item);
 				break;
+			case "strring":
+				if (class_of_character !== "warrior") {
+					break;
+				}
+				equip_strongest_ring(i, item);
+				break;
+			case "strearring":
+				if (class_of_character !== "warrior") {
+					break;
+				}
+				equip_strongest_earring(i, item);
+				break;
+			case "intring":
+				if (class_of_character !== "mage") {
+					break;
+				}
+				equip_strongest_ring(i, item);
+				break;
+			case "intearring":
+				if (class_of_character !== "mage") {
+					break;
+				}
+				equip_strongest_earring(i, item);
+				break;
+			case "dexring":
+				if (class_of_character !== "ranger") {
+					return;
+				}
+				equip_strongest_ring(i, item);
+				break;
+			case "dexearring":
+				if (class_of_character !== "ranger") {
+					return;
+				}
+				equip_strongest_earring(i, item);
+				break;
 		}
 	}
 
+}
+
+function equip_strongest_ring(slot, item) {
+	const current_ring_1 = character.slots.ring1;
+	const current_ring_2 = character.slots.ring2;
+
+	const current_value_1 = calculate_value(current_ring_1);
+	const current_value_2 = calculate_value(current_ring_2);
+
+	if (current_value_1 < current_value_2) {
+		equip_strongest("ring1", slot, item);
+	} else {
+		equip_strongest("ring2", slot, item);
+	}
+}
+
+function equip_strongest_earring(slot, item) {
+	const current_earring_1 = character.slots.ring1;
+	const current_earring_2 = character.slots.ring2;
+
+	const current_value_1 = calculate_value(current_earring_1);
+	const current_value_2 = calculate_value(current_earring_2);
+
+	if (current_value_1 < current_value_2) {
+		equip_strongest("earring1", slot, item);
+	} else {
+		equip_strongest("earring2", slot, item);
+	}
 }
 
 function calculate_value(item_stats) {
