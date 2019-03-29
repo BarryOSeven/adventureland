@@ -143,38 +143,38 @@ function equip_strongest_items() {
 				break;
 			case "gloves":
 			case "wgloves":
-				equip_strongest_gloves(i, item);
+				equip_strongest("gloves", i, item);
 				break;
 			case "pants":
 			case "wbreeches":
-				equip_strongest_pants(i, item);
+				equip_strongest("pants", i, item);
 				break;
 			case "staff":
 				if (class_of_character !== "mage") {
 					break;
 				}
-				equip_strongest_mainhand(i, item);
+				equip_strongest("mainhand", i, item);
 				break;
 			case "bow":
 				if (class_of_character !== "ranger") {
 					break;
 				}
-				equip_strongest_mainhand(i, item);
+				equip_strongest("mainhand", i, item);
 				break;
 			case "blade":
 				if (class_of_character !== "warrior") {
 					break;
 				}
-				equip_strongest_mainhand(i, item);
+				equip_strongest("mainhand", i, item);
 				break;
 			case "helmet":
-				equip_strongest_helmet(i, item);
+				equip_strongest("helmet", i, item);
 				break;
 			case "shoes":
-				equip_strongest_shoes(i, item);
+				equip_strongest("shoes", i, item);
 				break;
 			case "coat":
-				equip_strongest_chest(i, item);
+				equip_strongest("chest", i, item);
 				break;
 			case "wshield":
 				if (class_of_character !== "mage") {
@@ -183,24 +183,23 @@ function equip_strongest_items() {
 				if (class_of_character !== "ranger") {
 					break;
 				}
-				equip_strongest_offhand(i, item);
+				equip_strongest("offhand", i, item);
+				break;
+			case "quiver":
+				if (class_of_character !== "ranger") {
+					break;
+				}
+				equip_strongest("offhand", i, item);
+				break;
+			case "dexbelt":
+				if (class_of_character !== "ranger") {
+					break;
+				}
+				equip_strongest("belt", i, item);
 				break;
 		}
 	}
 
-}
-
-function equip_strongest_mainhand(slot, item) {
-	const current_mainhand = character.slots.mainhand;
-
-	if (!current_mainhand) {
-		equip(slot);
-	}
-
-	if (current_mainhand.level < item.level) {
-		unequip("mainhand");
-		equip(slot);
-	}
 }
 
 function calculate_value(item_stats) {
@@ -226,45 +225,6 @@ function calculate_value(item_stats) {
 	return value;
 }
 
-// armor + stat + resistance
-function equip_strongest_gloves(slot, item) {
-	const current_gloves = character.slots.gloves;
-
-	const current_properties = item_properties(current_gloves);
-	const current_value = calculate_value(current_properties);
-
-	const properties = item_properties(item);
-	const value = calculate_value(properties);
-	
-	if (!current_gloves) {
-		equip(slot);
-	}
-
-	if (current_value < value) {
-		unequip("gloves");
-		equip(slot);
-	}
-}
-
-function equip_strongest_offhand(slot, item) {
-	const current_offhand = character.slots.offhand;
-
-	const current_properties = item_properties(current_offhand);
-	const current_value = calculate_value(current_properties);
-
-	const properties = item_properties(item);
-	const value = calculate_value(properties);
-	
-	if (!current_offhand) {
-		equip(slot);
-	}
-
-	if (current_value < value) {
-		unequip("offhand");
-		equip(slot);
-	}
-}
-
 function equip_strongest(characterslot, slot, item) {
 	const currently_wearing = character.slots[characterslot];
 
@@ -280,88 +240,6 @@ function equip_strongest(characterslot, slot, item) {
 
 	if (current_value < value) {
 		unequip(characterslot);
-		equip(slot);
-	}
-}
-
-
-// armor + stat + resistance
-function equip_strongest_helmet(slot, item) {
-	const current_helmet = character.slots.helmet;
-
-	const current_properties = item_properties(current_helmet);
-	const current_value = calculate_value(current_properties);
-
-	const properties = item_properties(item);
-	const value = calculate_value(properties);
-	
-	if (!current_helmet) {
-		equip(slot);
-	}
-
-	if (current_value < value) {
-		unequip("helmet");
-		equip(slot);
-	}
-}
-
-// armor + stat + resistance
-function equip_strongest_shoes(slot, item) {
-	const current_shoes = character.slots.shoes;
-
-	const current_properties = item_properties(current_shoes);
-	const current_value = calculate_value(current_properties);
-
-	const properties = item_properties(item);
-	const value = calculate_value(properties);
-	
-	if (!current_shoes) {
-		equip(slot);
-	}
-
-	if (current_value < value) {
-		unequip("shoes");
-		equip(slot);
-	}
-}
-
-// armor + stat + resistance
-function equip_strongest_chest(slot, item) {
-	const current_chest = character.slots.chest;
-
-	const current_properties = item_properties(current_chest);
-	const current_value = calculate_value(current_properties);
-
-	const properties = item_properties(item);
-	const value = calculate_value(properties);
-	
-	if (!current_chest) {
-		equip(slot);
-	}
-
-	if (current_value < value) {
-		unequip("chest");
-		equip(slot);
-	}
-}
-
-
-// armor + stat + resistance + speed
-function equip_strongest_pants(slot, item) {
-	const current_pants = character.slots.pants;
-
-	const current_properties = item_properties(current_pants);
-	const current_value = calculate_value(current_properties);
-
-	const properties = item_properties(item);
-	const value = calculate_value(properties);
-	
-	if (!current_pants) {
-		equip(slot);
-	}
-
-	if (current_value < value) {
-		unequip("pants");
 		equip(slot);
 	}
 }
