@@ -265,6 +265,26 @@ function equip_strongest_offhand(slot, item) {
 	}
 }
 
+function equip_strongest(characterslot, slot, item) {
+	const currently_wearing = character.slots[characterslot];
+
+	const current_properties = item_properties(currently_wearing);
+	const current_value = calculate_value(current_properties);
+
+	const properties = item_properties(item);
+	const value = calculate_value(properties);
+	
+	if (!currently_wearing) {
+		equip(slot);
+	}
+
+	if (current_value < value) {
+		unequip(characterslot);
+		equip(slot);
+	}
+}
+
+
 // armor + stat + resistance
 function equip_strongest_helmet(slot, item) {
 	const current_helmet = character.slots.helmet;
