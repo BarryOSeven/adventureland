@@ -3,6 +3,8 @@
 const amount_of_upgrade_scrolls_to_buy = 50;
 const amount_of_combine_scrolls_to_buy = 50;
 
+const minimum_amount_of_gold_to_upgrade = 50000;
+
 load_code(98, function() {
 	game_log("Unable to run generics");
 });
@@ -16,7 +18,7 @@ load_code(96, function() {
 });
 
 add_top_button("upgrade", "Upgrade", () => {
-    start_upgrade_item("gloves");
+    start_upgrade_item("shoes");
 });
 
 function buy_upgrade_scrolls(on_upgrade_scrolls_bought) {
@@ -67,6 +69,11 @@ function combine_items() {
 
 function start_upgrade_item(item_name) {
     if (state !== "idle") {
+        return;
+    }
+
+    if (character.gold < minimum_amount_of_gold_to_upgrade) {
+        game_log("Not enough gold to upgrade (50000)");
         return;
     }
 
