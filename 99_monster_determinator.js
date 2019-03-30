@@ -34,14 +34,6 @@ var hits_needed_to_kill;                //number of attacks needed to kill monst
 var monster_array = []; 
 
 function determine() {
-    function shuffle(a) {
-        for (let i = a.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [a[i], a[j]] = [a[j], a[i]];
-        }
-        return a;
-    }
-
     for(mapID in parent.G.maps)
     {
         for(monsterID in parent.G.maps[mapID].monsters)
@@ -73,4 +65,3 @@ function determine() {
 }
 
 determine();
-// setTimeout(determine, change_target_every_minutes * 60 * 1000);

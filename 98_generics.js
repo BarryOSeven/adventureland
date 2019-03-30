@@ -115,11 +115,6 @@ function handle_move_to_farm_location(x, y, map) {
 		return;
 	}
 
-	const range = 10;
-	if (is_in_range(x, y, map, range)) {
-		return;
-	}
-
 	state = "moving_to_farm_location";
 
 	const current_map_name = get_map().name;
