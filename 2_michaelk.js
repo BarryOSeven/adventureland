@@ -34,12 +34,20 @@ function call_party_members(monster_type) {
 	send_cm(["Leonidas", "BarryOSeven"], data);
 }
 
-function move_to_farm_location(monster_type) {
+function move_to_farm_location(monster_farm_location, monster_map_name) {
 	state = "moving_to_farm_location";
 
-	smart_move({to: monster_type}, function() {
-		state = "idle";
-	});
+	const current_map_name = get_map().name;
+
+	if (current_map_name !== monster_map_name) {
+		smart_move(monster_map_name.toLowerCase(), function() {
+			state = "idle";
+		});
+	} else {
+		smart_move(monster_farm_location, function() {
+			state = "idle";
+		});
+	}
 
 	return;
 }
@@ -70,13 +78,13 @@ setInterval(function() {
 	const monster_map_name = monster_array[target_index][3];
 	const monster_boundary = monster_array[target_index][4];
 
-	game_log(JSON.stringify(monster_boundary));
+	const monster_farm_location = get_center_location_of_boundary(monster_boundary);
 
 	call_party_members(monster_type);
 
 	if (!is_in_boundary(monster_boundary, monster_map_name)) {
 		game_log("moving to farm location " + monster_type);
-		move_to_farm_location(monster_type);
+		move_to_farm_location(monster_farm_location, monster_map_name);
 		return;
 	}
 	

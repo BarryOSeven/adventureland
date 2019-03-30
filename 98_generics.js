@@ -116,6 +116,22 @@ function handle_move_to_farm_location(x, y, map) {
 	});
 }
 
+function get_center_location_of_boundary(boundary) {
+	const x_min = boundary[0];
+	const x_max = boundary[2];
+	
+	const y_min = boundary[1];
+	const y_max = boundary[3];
+	
+	const center_x = (x_min + x_max) / 2;
+	const center_y = (y_min + y_max) / 2;
+
+	return {
+		x: center_x,
+		y: center_y
+	};
+}
+
 function is_in_boundary(boundary, map) {
 	const current_map = get_map();
 
