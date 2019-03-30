@@ -117,7 +117,8 @@ function handle_move_to_farm_location(x, y, map) {
 		return;
 	}
 
-	if (is_in_range(x, y, map)) {
+	const range = 10;
+	if (is_in_range(x, y, map, range)) {
 		return;
 	}
 
@@ -128,9 +129,7 @@ function handle_move_to_farm_location(x, y, map) {
 	});
 }
 
-function is_in_range(x, y, map) {
-	const range = 10;
-
+function is_in_range(x, y, map, range) {
 	const current_map = get_map();
 
 	if (current_map !== map) {
