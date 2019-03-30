@@ -99,6 +99,17 @@ function on_cm(name, data) {
 	}
 }
 
+function get_map_identifier(name) {
+	switch (name) {
+		case "Arena":
+			return "arena";
+		case "Spooky Forest":
+			return "halloween";
+		case "Town":
+			return "town";
+	}
+}
+
 function handle_move_to_farm_location(x, y, map) {
 	if (state !== "idle") {
 		return;
@@ -114,7 +125,7 @@ function handle_move_to_farm_location(x, y, map) {
 	const current_map_name = get_map().name;
 
 	if (current_map_name !== map) {
-		smart_move(map.toLowerCase(), () => {
+		smart_move(get_map_identifier(map), () => {
 			state = "idle";
 		});
 	} else {

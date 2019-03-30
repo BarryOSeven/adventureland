@@ -40,7 +40,7 @@ function move_to_farm_location(monster_farm_location, monster_map_name) {
 	const current_map_name = get_map().name;
 
 	if (current_map_name !== monster_map_name) {
-		smart_move(monster_map_name.toLowerCase(), function() {
+		smart_move(get_map_identifier(monster_map_name), function() {
 			state = "idle";
 		});
 	} else {
@@ -84,6 +84,8 @@ setInterval(function() {
 
 	if (!is_in_boundary(monster_boundary, monster_map_name)) {
 		game_log("moving to farm location " + monster_type);
+		game_log(JSON.stringify(monster_farm_location))
+		game_log(monster_map_name);
 		move_to_farm_location(monster_farm_location, monster_map_name);
 		return;
 	}
