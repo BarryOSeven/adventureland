@@ -52,6 +52,21 @@ function locate_item_slot(name) {
 	}
 }
 
+function locate_item_slot_by_item(item_to_search) {
+	for(var i=0; i<42; i++)
+	{
+		if(!character.items[i]) {
+			continue;
+		}
+
+		const item = character.items[i];
+
+		if (item.name === item_to_search.name && item.level === item_to_search.level) {
+			return i;
+		}
+	}
+}
+
 function locate_combinable_items() {
 	const items = [];
 
@@ -495,9 +510,11 @@ function handle_send_money(name) {
 }
 
 function handle_send_items(name) {
-	for(var i=0;i<42;i++)
+	for(let i=0;i<42;i++)
 	{
-		if(!character.items[i]) continue;
+		if(!character.items[i]) {
+			continue;
+		}
 		const item = character.items[i];
 	
 		if (item.name === "hpot0" || item.name === "mpot0") {

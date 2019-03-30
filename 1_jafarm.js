@@ -19,14 +19,6 @@ load_code(96, () => {
 
 load_code(95, () => {
     game_log("Unable to run locations");
-})
-
-add_top_button("upgrade", "Upgrade", () => {
-    start_upgrade_item("pants");
-});
-
-add_top_button("combine", "Combine", () => {
-    start_combine_item();
 });
 
 function buy_upgrade_scrolls(on_upgrade_scrolls_bought) {
@@ -123,7 +115,27 @@ function combine_items(items_to_combine, on_item_combined) {
     go_to_upgrade(on_upgrade_location);
 }
 
-function start_upgrade_item(item_name) {
+function get_upgradable_items() {
+	const upgradable_items = [];
+
+	for (let i=0; i<42 ;i++) {
+		if(!character.items[i]) {
+			continue;
+		}
+    
+        const item = character.items[i];
+
+		switch (item.name) {
+			case "wcap":
+				upgradable_items.push(item);
+				break;
+		}
+	}
+
+	return upgradable_items;
+}
+
+function start_upgrade_item() {
     if (state !== "idle") {
         return;
     }
@@ -140,11 +152,17 @@ function start_upgrade_item(item_name) {
         return;
     }
 
-    const upgrade_name = item_name;
+    // locate upgradable item
+    const upgradable_items = get_upgradable_items();
+    let item_to_upgrade;
 
-    const item = locate_item(upgrade_name);
+    for (const upgradable_item of upgradable_items) {
+        if (upgradable_item.level < 7) {
+            item_to_upgrade = upgradable_item;
+        }
+    }
 
-    if (item && item.level === 7) {
+    if (!item_to_upgrade) {
         return;
     }
 
@@ -152,25 +170,14 @@ function start_upgrade_item(item_name) {
 
     function on_item_upgraded() {
         state = "idle";
-        start_upgrade_item(item_name);
     }
 
-    function on_item_bought() {
-        state = "item_upgrade";
-        upgrade_item(upgrade_name, on_item_upgraded)
-    }
-
-    if (quantity(upgrade_name) === 0) {
-        state = "idle";
-        buy_item(upgrade_name, on_item_bought);
-    } else {
-        upgrade_item(upgrade_name, on_item_upgraded);
-    }
+    upgrade_item(item_to_upgrade, on_item_upgraded);
 }
 
-function upgrade_item(item_name, on_item_upgraded) {
+function upgrade_item(item_to_upgrade, on_item_upgraded) {
     function on_upgrade_location() {
-        const item_num = locate_item_slot(item_name);
+        const item_num = locate_item_slot_by_item(item_to_upgrade);
         const scroll_num = locate_item_slot("scroll0");
         
         upgrade(item_num, scroll_num);
@@ -259,5 +266,6 @@ setInterval(function() {
     buy_potions();
     buy_combine_scrolls();
     start_combine_item();
+    start_upgrade_item();
     start_exchange_seashells();
 }, 1000);
