@@ -100,13 +100,14 @@ setInterval(function() {
 		});
 
 		if (!target) {
-			target_index++;
+			target = get_nearest_monster();
+			// target_index++;
 
-			function reset_target_index() {
-				target_index = 0;
-			}
+			// function reset_target_index() {
+			// 	target_index = 0;
+			// }
 
-			setTimeout(reset_target_index, reset_target_index_time * 60 * 1000);
+			// setTimeout(reset_target_index, reset_target_index_time * 60 * 1000);
 		}
 
 		if(target) {
