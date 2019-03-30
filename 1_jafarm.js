@@ -141,7 +141,6 @@ function start_upgrade_item() {
     }
 
     if (character.gold < minimum_amount_of_gold_to_upgrade) {
-        game_log(`Not enough gold to upgrade (${minimum_amount_of_gold_to_upgrade})`);
         return;
     }
 
