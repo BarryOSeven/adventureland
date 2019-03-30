@@ -306,6 +306,12 @@ function equip_strongest_items() {
 				}
 				equip_strongest("belt", i, item);
 				break;
+			case "hpbelt":
+				if (class_of_character !== "merchant") {
+					break;
+				}
+				equip_strongest("belt", i, item);
+				break;
 			// book of knowledge
 			case "wbook0":
 				if (class_of_character !== "mage") {
@@ -341,6 +347,9 @@ function equip_strongest_items() {
 				if (class_of_character !== "ranger") {
 					return;
 				}
+				equip_strongest_ring(i, item);
+				break;
+			case "ringsj":
 				equip_strongest_ring(i, item);
 				break;
 			case "dexearring":
