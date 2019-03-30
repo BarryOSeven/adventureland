@@ -1,5 +1,9 @@
 // MichaelK
 
+// used for monster determination
+let target_index = 0;
+const reset_target_index_time = 20; // minutes
+
 load_code(98, function() {
 	game_log("Unable to run generics");
 });
@@ -31,10 +35,6 @@ function call_party_members(monster_type) {
 }
 
 function move_to_farm_location(monster_type) {
-	if (state !== "idle") {
-		return;
-	}
-
 	state = "moving_to_farm_location";
 
 	smart_move({to: monster_type}, function() {
@@ -66,17 +66,19 @@ setInterval(function() {
 
 	buy_potions();
 	
-	const current_map = get_map();
-	// const monster_name = monster_array[0][0];
-	const monster_type = monster_array[0][1];
-	const monster_map_name = monster_array[0][3];
-	const monster_boundary = monster_array[0][4];
+	const monster_type = monster_array[target_index][1];
+	const monster_map_name = monster_array[target_index][3];
+	const monster_boundary = monster_array[target_index][4];
 
-	if (!is_in_boundary(monster_boundary, monster_map_name)) {
-		move_to_farm_location(monster_type);
-	}
+	game_log(JSON.stringify(monster_boundary));
 
 	call_party_members(monster_type);
+
+	if (!is_in_boundary(monster_boundary, monster_map_name)) {
+		game_log("moving to farm location " + monster_type);
+		move_to_farm_location(monster_type);
+		return;
+	}
 	
 	use_charge();
 	
@@ -88,7 +90,16 @@ setInterval(function() {
 		});
 
 		if (!target) {
-			target = get_nearest_monster();
+			target_index++;
+
+			game_log("new target " + monster_array[target_index][1]);
+			game_log("increasing target_index to " + target_index);// MichaelK
+
+			function reset_target_index() {
+				target_index = 0;
+			}
+
+			setTimeout(reset_target_index, reset_target_index_time * 60 * 1000);
 		}
 		// target = get_nearest_hostile({
 		// 	exclude: names
