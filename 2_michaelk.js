@@ -22,13 +22,13 @@ function use_charge() {
 	}	
 }
 
-function call_party_members(monster_type) {
+function call_party_members(monster_farm_location, monster_map_name) {
 	// send cm to party members to join farming
 	const data = {
 		type: "move_to_farm_location",
-		x: character.real_x,
-		y: character.real_y,
-		map: character.map
+		x: monster_farm_location.x,
+		y: monster_farm_location.y,
+		map: monster_map_name
 	}
 
 	send_cm(["Leonidas", "BarryOSeven"], data);
@@ -79,8 +79,8 @@ setInterval(function() {
 	const monster_boundary = monster_array[target_index][4];
 
 	const monster_farm_location = get_center_location_of_boundary(monster_boundary);
-
-	call_party_members(monster_type);
+	
+	call_party_members(monster_farm_location, monster_map_name);
 
 	if (!is_in_boundary(monster_boundary, monster_map_name)) {
 		game_log("moving to farm location " + monster_type);
@@ -134,7 +134,6 @@ setInterval(function() {
 	}
 	else if(can_attack(target))
 	{
-		state = "attacking";
 		set_message("Attacking");
 		attack(target);
 	}

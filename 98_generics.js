@@ -111,9 +111,17 @@ function handle_move_to_farm_location(x, y, map) {
 
 	state = "moving_to_farm_location";
 
-	smart_move({x: x, y: y, map: map}, function() {
-		state = "attacking"
-	});
+	const current_map_name = get_map().name;
+
+	if (current_map_name !== map) {
+		smart_move(map.toLowerCase(), () => {
+			state = "idle";
+		});
+	} else {
+		smart_move({x: x, y: y}, () => {
+			state = "idle"
+		});
+	}
 }
 
 function get_center_location_of_boundary(boundary) {
