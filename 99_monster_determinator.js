@@ -64,9 +64,9 @@ function determine() {
         return b[2] - a[2];
     });
 
-    monster_array.splice(5);
+    // monster_array.splice(5);
 
-    shuffle(monster_array);
+    // shuffle(monster_array);
 }
 
 determine();
