@@ -5,17 +5,21 @@ const amount_of_combine_scrolls_to_buy = 50;
 
 const minimum_amount_of_gold_to_upgrade = 50000;
 
-load_code(98, function() {
+load_code(98, () => {
 	game_log("Unable to run generics");
 });
 
-load_code(97, function() {
+load_code(97, () => {
 	game_log("Unable to run updates");
 });
 
-load_code(96, function() {
+load_code(96, () => {
     game_log("Unable to run party");
 });
+
+load_code(95, () => {
+    game_log("Unable to run locations");
+})
 
 add_top_button("upgrade", "Upgrade", () => {
     start_upgrade_item("pants");
@@ -225,19 +229,35 @@ function equip_item(name, item_name) {
     // send cm with item id
 }
 
+function start_exchange_seashells() {
+    if (state !== "idle") {
+        return;
+    }
+
+    const item_name = "seashell";
+
+    function on_exchange_location() {
+        const seashell_slot = locate_item_slot(item_name);
+        
+        exchange(seashell_slot);
+        state = "idle";
+    }
+
+    if (quantity(item_name) >= 20) {
+        state = "sell_seashells";
+
+        smart_move(tristian_location, on_exchange_location);
+    }
+}
+
 setInterval(function() {
 	if (is_moving(character)) {
 		return;
     }
 
-    // buy_item("sword");
-    // equip_item("MichaelK", "str")
-
     use_potions();
-
     buy_potions();
-    
     buy_combine_scrolls();
-
     start_combine_item();
+    start_exchange_seashells();
 }, 1000);

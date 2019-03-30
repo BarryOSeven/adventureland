@@ -10,4 +10,4 @@ function send_party_invites() {
     }
 }
 
-setInterval(send_party_invites, 30 * 1000);
+setInterval(send_party_invites, 5 * 1000);
