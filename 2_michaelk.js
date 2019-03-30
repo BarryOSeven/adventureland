@@ -100,22 +100,12 @@ setInterval(function() {
 		if (!target) {
 			target_index++;
 
-			game_log("new target " + monster_array[target_index][1]);
-			game_log("increasing target_index to " + target_index);// MichaelK
-
 			function reset_target_index() {
 				target_index = 0;
 			}
 
 			setTimeout(reset_target_index, reset_target_index_time * 60 * 1000);
 		}
-		// target = get_nearest_hostile({
-		// 	exclude: names
-		// });
-
-		// if (!target) {
-		// 	target = get_nearest_monster();
-		// }
 
 		if(target) {
 			change_target(target);
