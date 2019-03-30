@@ -18,7 +18,7 @@ load_code(96, function() {
 });
 
 add_top_button("upgrade", "Upgrade", () => {
-    start_upgrade_item("shoes");
+    start_upgrade_item("pants");
 });
 
 add_top_button("combine", "Combine", () => {

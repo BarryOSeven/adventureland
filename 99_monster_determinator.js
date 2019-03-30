@@ -1,3 +1,5 @@
+const change_target_every_minutes = 30;
+
 ///////////////////////////////////////////////
 //	Basic XP Efficiency Calculator	//
 /////////////////////////////////////////////
@@ -30,8 +32,17 @@ var monster;                            //monster data
 var monster_info;
 var hits_needed_to_kill;                //number of attacks needed to kill monster
 var monster_array = []; 
-    
+
 function determine() {
+
+    function shuffle(a) {
+        for (let i = a.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+    }
+
     for(mapID in parent.G.maps)
     {
         for(monsterID in parent.G.maps[mapID].monsters)
@@ -52,7 +63,11 @@ function determine() {
     monster_array.sort(function(a,b){
         return b[2] - a[2];
     });
+
+    monster_array.splice(5);
+
+    shuffle(monster_array);
 }
 
 determine();
-setTimeout(determine, 5 * 60 * 1000);
+setTimeout(determine, change_target_every_minutes * 60 * 1000);
