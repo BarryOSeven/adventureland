@@ -69,7 +69,7 @@ function start_combine_item() {
         });
     }
 
-    const items = locate_combinable_items();
+    const items = get_combinable_items();
 
     let countObject = {};
 
@@ -133,6 +133,37 @@ function get_upgradable_items() {
 	}
 
 	return upgradable_items;
+}
+
+function get_combinable_items() {
+	const items = [];
+
+	for (let i=0; i<42; i++) {
+		if(!character.items[i]) {
+			continue;
+		}
+
+		const item = character.items[i];
+
+		switch(item.name) {
+			case "ringsj":
+			case "hpbelt":
+			case "hpamulet":
+			case "dexamulet":
+			case "intamulet":
+			case "stramulet":
+				const itemObject = {
+					item: item,
+					slot: i
+				};
+
+				items.push(itemObject);
+				break;
+		}
+		
+	}
+
+	return items;
 }
 
 function start_upgrade_item() {
