@@ -79,13 +79,13 @@ setInterval(function() {
 	const monster_boundary = monster_array[target_index][4];
 
 	const monster_farm_location = get_center_location_of_boundary(monster_boundary);
-	
-	call_party_members(monster_farm_location, monster_map_name);
 
 	if (!is_in_boundary(monster_boundary, monster_map_name)) {
 		game_log("moving to farm location " + monster_type);
 		game_log(JSON.stringify(monster_farm_location))
 		game_log(monster_map_name);
+		
+		call_party_members(monster_farm_location, monster_map_name);
 		move_to_farm_location(monster_farm_location, monster_map_name);
 		return;
 	}
