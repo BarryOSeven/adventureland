@@ -63,6 +63,9 @@ function locate_combinable_items() {
 		const item = character.items[i];
 
 		switch(item.name) {
+			case "ringsj":
+			case "hpbelt":
+			case "hpamulet":
 			case "dexamulet":
 			case "intamulet":
 			case "stramulet":

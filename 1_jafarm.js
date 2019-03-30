@@ -101,8 +101,9 @@ function start_combine_item() {
     }
 
     if (items_to_combine) {
+        state = "combine_items";
         combine_items(items_to_combine, () => {
-            //
+            state = "idle";
         });
     }
 }
@@ -238,5 +239,5 @@ setInterval(function() {
     
     buy_combine_scrolls();
 
-    // upgrade_items();
+    start_combine_item();
 }, 1000);
