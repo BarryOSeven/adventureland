@@ -55,7 +55,7 @@ function determine() {
             
             if(monster_array.every(e => e[1] != monster.type))
             {
-                monster_array.push([monster_info.name, monster.type, xp_per_hit, parent.G.maps[mapID].name, monster.x, monster.y]);
+                monster_array.push([monster_info.name, monster.type, xp_per_hit, parent.G.maps[mapID].name, monster.boundary]);
             }
         }
     }
@@ -70,10 +70,7 @@ function determine() {
     monster_array.sort(function(a,b){
         return b[2] - a[2];
     });
-    show_json(monster_array);
-    // monster_array.splice(5);
 
-    // shuffle(monster_array);
 }
 
 determine();

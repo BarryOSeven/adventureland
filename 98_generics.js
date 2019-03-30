@@ -129,6 +129,28 @@ function handle_move_to_farm_location(x, y, map) {
 	});
 }
 
+function is_in_boundary(boundary, map) {
+	const current_map = get_map();
+
+	if (current_map.name !== map) {
+		return false;
+	}
+
+	const x_min = boundary[0];
+	const y_min = boundary[1];
+	const x_max = boundary[2];
+	const y_max = boundary[3];
+
+	if (character.real_x > x_min &&
+		character.real_x < x_max &&
+		character.real_y > y_min &&
+		character.real_y < y_max) {
+			return true;
+	}
+
+	return false;
+}
+
 function is_in_range(x, y, map, range) {
 	const current_map = get_map();
 
