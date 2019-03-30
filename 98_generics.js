@@ -106,7 +106,7 @@ function get_map_identifier(name) {
 		case "Spooky Forest":
 			return "halloween";
 		case "Town":
-			return "town";
+			return "main";
 	}
 }
 
