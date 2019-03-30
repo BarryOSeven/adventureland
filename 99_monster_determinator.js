@@ -49,8 +49,8 @@ function determine() {
         {
             monster = parent.G.maps[mapID].monsters[monsterID];
             monster_info = parent.G.monsters[monster.type];
-            
-            hits_needed_to_kill = Math.ceil(monster_info.hp/your_attack);
+
+            hits_needed_to_kill = Math.ceil(monster_info.max_hp/your_attack);
             xp_per_hit = monster_info.xp / hits_needed_to_kill;
             
             if(monster_array.every(e => e[1] != monster.type))
