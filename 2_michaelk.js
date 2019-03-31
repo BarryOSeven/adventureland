@@ -127,7 +127,6 @@ setInterval(function() {
 		if(target) {
 			change_target(target);
 			support_update_target(target);
-			use_taunt();
 		} else {
 			set_message("No Monsters");
 			return;
@@ -145,6 +144,7 @@ setInterval(function() {
 	else if(can_attack(target))
 	{
 		set_message("Attacking");
+		use_taunt();
 		attack(target);
 	}
 
