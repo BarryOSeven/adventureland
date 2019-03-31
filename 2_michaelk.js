@@ -52,6 +52,15 @@ function move_to_farm_location(monster_farm_location, monster_map_name) {
 	return;
 }
 
+function support_update_target() {
+	// send target to support classes
+	const data = {
+		type: "target"
+	};
+
+	send_cm(["BarryOSeven", "Leonidas"], data);
+}
+
 setInterval(function() {
 	loot();
 	
@@ -108,6 +117,7 @@ setInterval(function() {
 
 		if(target) {
 			change_target(target);
+			support_update_target();
 		} else {
 			set_message("No Monsters");
 			return;
@@ -115,12 +125,7 @@ setInterval(function() {
 	}
 
 	if (target) {
-		// send target to support classes
-		const data = {
-			type: "target"
-		};
-
-		send_cm(["BarryOSeven", "Leonidas"], data);
+		
 	}
 
 	if(!in_attack_range(target))
