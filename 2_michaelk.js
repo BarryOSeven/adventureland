@@ -124,10 +124,6 @@ setInterval(function() {
 		}	
 	}
 
-	if (target) {
-		
-	}
-
 	if(!in_attack_range(target))
 	{
 		move(
