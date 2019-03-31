@@ -131,6 +131,7 @@ function get_upgradable_items() {
         const item = character.items[i];
 
 		switch (item.name) {
+            case "shield":
 			case "wcap":
 				upgradable_items.push(item);
 				break;
@@ -192,7 +193,7 @@ function start_upgrade_item() {
     let item_to_upgrade;
 
     for (const upgradable_item of upgradable_items) {
-        if (upgradable_item.level < 7) {
+        if (upgradable_item.level < parent.G.items[upgradable_item.name].grades[0]) {
             item_to_upgrade = upgradable_item;
         }
     }
