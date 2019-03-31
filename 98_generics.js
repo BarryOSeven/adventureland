@@ -85,7 +85,7 @@ function on_cm(name, data) {
 			handle_move_to_farm_location(data.x, data.y, data.map);
 			break;
 		case "target":
-			handle_target(name)
+			handle_target(data.target_id);
 			break;
 		case "send_money":
 			handle_send_money(data.name);
@@ -469,9 +469,8 @@ function equip_strongest_amulet(slot, item) {
 	}
 }
 
-function handle_target(name) {
-	const leader = get_player(name);
-	const target = get_target_of(leader);
+function handle_target(target_id) {
+	const target = parent.entities[target_id];
 
 	change_target(target);
 }

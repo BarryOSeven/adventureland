@@ -52,10 +52,11 @@ function move_to_farm_location(monster_farm_location, monster_map_name) {
 	return;
 }
 
-function support_update_target() {
+function support_update_target(target) {
 	// send target to support classes
 	const data = {
-		type: "target"
+		type: "target",
+		target_id: target.id
 	};
 
 	send_cm(["BarryOSeven", "Leonidas"], data);
@@ -97,7 +98,7 @@ setInterval(function() {
 	
 	use_charge();
 	
-	let target=get_targeted_monster();
+	let target = get_targeted_monster();
 	
 	if (!target) {
 		target = get_nearest_monster({
@@ -119,7 +120,7 @@ setInterval(function() {
 
 		if(target) {
 			change_target(target);
-			support_update_target();
+			support_update_target(target);
 		} else {
 			set_message("No Monsters");
 			return;
