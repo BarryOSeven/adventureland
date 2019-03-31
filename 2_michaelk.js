@@ -22,6 +22,12 @@ function use_charge() {
 	}	
 }
 
+function use_taunt() {
+	if (can_use("taunt")) {
+		use_skill("taunt");
+	}
+}
+
 function call_party_members(monster_farm_location, monster_map_name) {
 	// send cm to party members to join farming
 	const data = {
@@ -121,6 +127,7 @@ setInterval(function() {
 		if(target) {
 			change_target(target);
 			support_update_target(target);
+			use_taunt();
 		} else {
 			set_message("No Monsters");
 			return;
