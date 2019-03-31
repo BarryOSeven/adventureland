@@ -105,7 +105,9 @@ setInterval(function() {
 		});
 
 		if (!target) {
-			target = get_nearest_monster();
+			target = get_nearest_monster({
+				min_xp: 0
+			});
 			// target_index++;
 
 			// function reset_target_index() {
