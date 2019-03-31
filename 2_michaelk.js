@@ -59,7 +59,7 @@ setInterval(function() {
 		return;
 	}
 
-	if (state === "attacking" && character.gold > request_merchant_on_gold + gold_offset) {
+	if (character.gold > request_merchant_on_gold + gold_offset) {
 		const data = {
 			type: "collect_money",
 			x: character.real_x,
@@ -81,10 +81,6 @@ setInterval(function() {
 	const monster_farm_location = get_center_location_of_boundary(monster_boundary);
 
 	if (!is_in_boundary(monster_boundary, monster_map_name)) {
-		game_log("moving to farm location " + monster_type);
-		game_log(JSON.stringify(monster_farm_location))
-		game_log(monster_map_name);
-		
 		call_party_members(monster_farm_location, monster_map_name);
 		move_to_farm_location(monster_farm_location, monster_map_name);
 		return;
