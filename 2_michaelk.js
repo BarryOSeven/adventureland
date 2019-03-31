@@ -96,8 +96,9 @@ setInterval(function() {
 
 	const monster_farm_location = get_center_location_of_boundary(monster_boundary);
 
+	call_party_members(monster_farm_location, monster_map_name);
+
 	if (!is_in_boundary(monster_boundary, monster_map_name)) {
-		call_party_members(monster_farm_location, monster_map_name);
 		move_to_farm_location(monster_farm_location, monster_map_name);
 		return;
 	}
@@ -126,11 +127,18 @@ setInterval(function() {
 
 		if(target) {
 			change_target(target);
-			support_update_target(target);
 		} else {
 			set_message("No Monsters");
 			return;
 		}	
+	}
+
+	if (target) {
+		support_update_target(target);
+	}
+
+	if (!target) {
+		state = "idle";
 	}
 
 	if(!in_attack_range(target))
@@ -143,8 +151,13 @@ setInterval(function() {
 	}
 	else if(can_attack(target))
 	{
+		state = "attacking";
+
 		set_message("Attacking");
+
+		// if target of target !== me
 		use_taunt();
+
 		attack(target);
 	}
 

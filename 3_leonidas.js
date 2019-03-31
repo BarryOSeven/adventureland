@@ -59,6 +59,7 @@ setInterval(function(){
 	}
 	
 	if (!target) {
+		state = "idle";
 		set_message("Waiting for target");
 		return;
 	}
@@ -73,6 +74,7 @@ setInterval(function(){
 	}
 	else if(can_attack(target))
 	{
+		state = "attacking";
 		set_message("Attacking");
 		attack(target);
 	}
