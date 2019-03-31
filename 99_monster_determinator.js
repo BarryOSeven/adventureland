@@ -1,4 +1,4 @@
-const change_target_every_minutes = 30;
+const redetermine_target_every_minutes = 30;
 
 ///////////////////////////////////////////////
 //	Basic XP Efficiency Calculator	//
@@ -65,3 +65,8 @@ function determine() {
 }
 
 determine();
+
+function redetermine() {
+    determine();
+}
+setTimeout(redetermine, redetermine_target_every_minutes * 60 * 1000);
