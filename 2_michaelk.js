@@ -114,7 +114,8 @@ setInterval(function() {
 
 		if (!target) {
 			target = get_nearest_monster({
-				min_xp: 0
+				min_xp: 100,
+				max_att: (character.max_hp / 4)
 			});
 			// target_index++;
 
@@ -134,6 +135,7 @@ setInterval(function() {
 	}
 
 	if (target) {
+		state = "attacking";
 		support_update_target(target);
 	}
 
@@ -151,8 +153,6 @@ setInterval(function() {
 	}
 	else if(can_attack(target))
 	{
-		state = "attacking";
-
 		set_message("Attacking");
 
 		// if target of target !== me

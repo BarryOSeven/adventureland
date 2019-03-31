@@ -357,6 +357,12 @@ function equip_strongest_items() {
 				}
 				equip_strongest_earring(i, item);
 				break;
+			case "vitearring":
+				if (class_of_character !== "merchant") {
+					break;
+				}
+				equip_strongest_earring(i, item);
+				break;
 			case "dexring":
 				if (class_of_character !== "ranger") {
 					return;
@@ -567,11 +573,11 @@ function buy_potions() {
 }
 
 function use_potions() {
-	if (character.max_hp - character.hp > 200 && quantity("hpot0") > 0) {
+	if (can_use('use_hp') && character.max_hp - character.hp > 200 && quantity("hpot0") > 0) {
 		use('hp');	
 	}
 
-	if ((character.max_mp - character.mp > 300) || (character.mp <= 3) && quantity("mpot0") > 0) {
+	if (can_use('use_mp') && ((character.max_mp - character.mp > 300) || (character.mp <= 3) && quantity("mpot0") > 0)) {
 		use('mp');	
 	}
 }

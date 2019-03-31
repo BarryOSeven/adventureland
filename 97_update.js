@@ -6,6 +6,8 @@ const allFiles = [
     "2_michaelk.js",
     "3_leonidas.js",
     "4_barryoseven.js",
+    "5_holymother.js",
+    "6_roguemind.js",
     "95_locations.js",
     "96_party.js",
     "97_update.js",
@@ -29,6 +31,14 @@ function on_code_updated() {
     if (currentPlayer !== "BarryOSeven") {
         start_character("BarryOSeven", 4);
     }    
+
+    // if (currentPlayer !== "HolyMother") {
+    //     start_character("HolyMother", 5);
+    // }
+
+    // if (currentPlayer !== "RogueMind") {
+    //     start_character("RogueMind", 6);
+    // }
 }
 
 function on_destroy() {
