@@ -136,7 +136,8 @@ function get_upgradable_items() {
             case "spear":
             case "helmet":
             case "helmet1":
-			case "wcap":
+            case "wcap":
+            case "wshoes":
 				upgradable_items.push(item);
 				break;
 		}
@@ -156,6 +157,10 @@ function get_combinable_items() {
 		const item = character.items[i];
 
 		switch(item.name) {
+            case "intearring":
+            case "dexearring":
+            case "strearring":
+            case "vitearring":
 			case "ringsj":
 			case "hpbelt":
 			case "hpamulet":

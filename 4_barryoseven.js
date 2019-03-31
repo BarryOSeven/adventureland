@@ -51,7 +51,9 @@ setInterval(function(){
 	else if(can_attack(target))
 	{
 		set_message("Attacking");
-		attack(target);
+		attack(target).then((data) => {
+			reduce_cooldown("attack", character.ping);
+		});
 	}
 
 },1000/4);

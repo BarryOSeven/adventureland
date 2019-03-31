@@ -158,7 +158,9 @@ setInterval(function() {
 		// if target of target !== me
 		use_taunt();
 
-		attack(target);
+		attack(target).then((data) => {
+			reduce_cooldown("attack", character.ping);
+		})
 	}
 
 },1000/4);
