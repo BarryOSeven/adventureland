@@ -31,16 +31,18 @@ function buy_upgrade_scrolls(on_upgrade_scrolls_bought) {
 	if (upgradeScrollCount === 0) {
         state = "buy_upgrade_scrolls";
 
-		smart_move({to: "scrolls"}, function() {
+        function on_upgrade_location() {
             buy_with_gold("scroll0", amount_of_upgrade_scrolls_to_buy);	
             state = "idle";
             on_upgrade_scrolls_bought();
-		});
+        }
+
+        go_to_upgrade(on_upgrade_location);
 		return;
 	}
 }
 
-function buy_combine_scrolls() {
+function buy_combine_scrolls(on_combine_scrolls_bought) {
     if (state !== "idle") {
         return;
     }
@@ -50,10 +52,13 @@ function buy_combine_scrolls() {
 	if (combineScrollCount === 0) {
         state = "buy_combine_scrolls";
 
-		smart_move({to: "scrolls"}, function() {
+        function on_upgrade_location() {
             buy_with_gold("cscroll0", amount_of_combine_scrolls_to_buy);	
             state = "idle";
-		});
+            on_combine_scrolls_bought();
+        }
+
+		go_to_upgrade(on_upgrade_location);
 		return;
 	}
 }
@@ -294,7 +299,7 @@ setInterval(function() {
 
     use_potions();
     buy_potions();
-    buy_combine_scrolls();
+
     start_combine_item();
     start_upgrade_item();
     start_exchange_seashells();
