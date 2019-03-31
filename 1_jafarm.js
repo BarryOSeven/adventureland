@@ -132,6 +132,10 @@ function get_upgradable_items() {
 
 		switch (item.name) {
             case "shield":
+            case "shoes":
+            case "spear":
+            case "helmet":
+            case "helmet1":
 			case "wcap":
 				upgradable_items.push(item);
 				break;
@@ -237,6 +241,20 @@ function go_to_upgrade(on_upgrade_location) {
     }
 }
 
+function go_to_exchange(on_exchange_location) {
+    function on_in_main_town() {
+        smart_move({to: "exchange"}, on_exchange_location);
+    }
+
+    const destination_map = "main";
+
+    if (character.map !== destination_map) {
+        smart_move(destination_map, on_in_main_town);
+    } else {
+        on_in_main_town();
+    }
+}
+
 function go_to_basics(on_potion_location) {
     function on_in_main_town() {
         smart_move({to: "potions"}, on_potion_location);
@@ -272,6 +290,41 @@ function equip_item(name, item_name) {
     // send cm with item id
 }
 
+function start_exchange_gems() {
+    if (state !== "idle") {
+        return;
+    }
+
+    let exchangable_item;
+    for (let i=0; i<42; i++) {
+        if (!character.items[i]) {
+            continue;
+        }
+
+        const item = character.items[i];
+
+        switch (item.name) {
+            case "gem0":
+            case "gem1":
+            case "weaponbox":
+            case "armorbox":
+                exchangable_item = item;
+                break;
+        }
+    }
+
+    function on_exchange_location() {
+        const slot = locate_item_slot(exchangable_item.name);
+        exchange(slot);
+        state = "idle";
+    }
+
+    if (exchangable_item) {
+        state = "exchanging_gems";
+        go_to_exchange(on_exchange_location);
+    }
+}
+
 function start_exchange_seashells() {
     if (state !== "idle") {
         return;
@@ -304,4 +357,5 @@ setInterval(function() {
     start_combine_item();
     start_upgrade_item();
     start_exchange_seashells();
+    start_exchange_gems();
 }, 1000);
