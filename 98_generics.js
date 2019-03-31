@@ -365,7 +365,7 @@ function equip_strongest_items() {
 				break;
 			case "dexring":
 				if (class_of_character !== "ranger") {
-					return;
+					break;
 				}
 				equip_strongest_ring(i, item);
 				break;
@@ -374,7 +374,7 @@ function equip_strongest_items() {
 				break;
 			case "dexearring":
 				if (class_of_character !== "ranger") {
-					return;
+					break;
 				}
 				equip_strongest_earring(i, item);
 				break;
