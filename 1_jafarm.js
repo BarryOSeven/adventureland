@@ -134,7 +134,7 @@ function get_upgradable_items() {
             case "shield":
             case "shoes":
             case "spear":
-	    case "gloves:
+	    case "gloves":
             case "helmet":
             case "helmet1":
             case "wcap":
