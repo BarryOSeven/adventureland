@@ -248,7 +248,7 @@ function equip_strongest_items() {
 		if (item.name === "hpot0" || item.name === "mpot0") {
 			continue;
 		}
-		
+
 		switch (item.name) {
 			case "stramulet":
 				if (class_of_character !== "warrior") {
@@ -423,8 +423,8 @@ function equip_strongest_ring(slot, item) {
 }
 
 function equip_strongest_earring(slot, item) {
-	const current_earring_1 = character.slots.ring1;
-	const current_earring_2 = character.slots.ring2;
+	const current_earring_1 = character.slots.earring1;
+	const current_earring_2 = character.slots.earring2;
 
 	const properties_1 = item_properties(current_earring_1);
 	const current_value_1 = calculate_value(properties_1);
@@ -432,7 +432,7 @@ function equip_strongest_earring(slot, item) {
 	const properties_2 = item_properties(current_earring_2);
 	const current_value_2 = calculate_value(properties_2);
 
-	if (current_value_1 < current_value_2) {
+	if (current_value_1 > current_value_2) {
 		equip_strongest("earring1", slot, item);
 	} else {
 		equip_strongest("earring2", slot, item);
