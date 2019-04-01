@@ -76,6 +76,19 @@ function is_inventory_full() {
 	return true;
 }
 
+function handle_collection() {
+	if (is_inventory_full() || character.gold > request_merchant_on_gold + gold_offset) {
+		const data = {
+			type: "collect_money",
+			x: character.real_x,
+			y: character.real_y,
+			map: character.in
+		};
+
+		send_cm("JafarM", data);
+	}	
+}
+
 function on_cm(name, data) {
     const characters = ["JafarM", "MichaelK", "Leonidas", "BarryOSeven"];
     
