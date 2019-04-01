@@ -132,6 +132,7 @@ function get_upgradable_items() {
 
 		switch (item.name) {
             case "shield":
+	    case "bow":
             case "shoes":
             case "spear":
 	    case "gloves":
