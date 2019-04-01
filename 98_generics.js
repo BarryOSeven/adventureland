@@ -67,6 +67,15 @@ function locate_item_slot_by_item(item_to_search) {
 	}
 }
 
+function is_inventory_full() {
+	for (let i=0; i<42; i++) {
+		if (!character.items[i]) {
+			return false;	
+		}
+	}
+	return true;
+}
+
 function on_cm(name, data) {
     const characters = ["JafarM", "MichaelK", "Leonidas", "BarryOSeven"];
     
