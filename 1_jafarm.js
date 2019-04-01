@@ -134,10 +134,14 @@ function get_upgradable_items() {
             case "shield":
             case "shoes":
             case "spear":
+	    case "gloves:
             case "helmet":
             case "helmet1":
             case "wcap":
             case "wshoes":
+	    case "wbreeches":
+	    case "wgloves":
+	    
 				upgradable_items.push(item);
 				break;
 		}
