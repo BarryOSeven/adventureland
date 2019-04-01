@@ -13,16 +13,7 @@ setInterval(function(){
 	
 	if(character.rip || is_moving(character)) return;
 
-	if (character.gold > request_merchant_on_gold + gold_offset) {
-		const data = {
-			type: "collect_money",
-			x: character.real_x,
-			y: character.real_y,
-			map: character.in
-		};
-
-		send_cm("JafarM", data);
-	}
+	handle_collection();
 
 	use_potions();
 
