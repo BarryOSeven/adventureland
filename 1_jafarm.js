@@ -72,6 +72,7 @@ function start_combine_item() {
         buy_combine_scrolls(() => {
             start_combine_item();
         });
+	    return;
     }
 
     const items = get_combinable_items();
