@@ -24,6 +24,15 @@ add_top_button("log", "Log", () => {
     send_cm(["JafarM", "MichaelK", "Leonidas", "BarryOSeven"], data);
 });
 
+function send_equiped_item(name, slot) {
+	const data = {
+		type: "send_equiped_item",
+		slot: slot
+	};
+
+	send_cm(name, data);
+}
+
 function locate_item(name) {
 	for(var i=0; i<42; i++)
 	{
@@ -99,6 +108,8 @@ function on_cm(name, data) {
     }
 
 	switch(data.type) {
+		case "send_equiped_item":
+			handle_send_equiped_item(data.slot);
 		case "collect_money":
             handle_collect(name, data);
 			break;
@@ -121,6 +132,16 @@ function on_cm(name, data) {
 			handle_log();
 			break;
 	}
+}
+
+function handle_send_equiped_item(slot) {
+	const item = character.slots[slot].name;
+
+	unequip(slot);
+
+	const inventory_slot = locate_item_slot_by_item(item);
+
+	send_item("JafarM", inventory_slot);
 }
 
 function get_map_identifier(name) {
@@ -312,10 +333,7 @@ function equip_strongest_items() {
 				equip_strongest("chest", i, item);
 				break;
 			case "wshield":
-				if (class_of_character !== "mage") {
-					break;
-				} else
-				if (class_of_character !== "ranger") {
+				if (class_of_character !== "warrior") {
 					break;
 				}
 				equip_strongest("offhand", i, item);
