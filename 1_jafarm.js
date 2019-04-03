@@ -26,20 +26,15 @@ function buy_upgrade_scrolls(on_upgrade_scrolls_bought) {
         return;
     }
 
-    const upgradeScrollCount = quantity("scroll0");
-	
-	if (upgradeScrollCount === 0) {
-        state = "buy_upgrade_scrolls";
+    state = "buy_upgrade_scrolls";
 
-        function on_upgrade_location() {
-            buy_with_gold("scroll0", amount_of_upgrade_scrolls_to_buy);	
-            state = "idle";
-            on_upgrade_scrolls_bought();
-        }
+    function on_upgrade_location() {
+        buy_with_gold("scroll0", amount_of_upgrade_scrolls_to_buy);	
+        state = "idle";
+        on_upgrade_scrolls_bought();
+    }
 
-        go_to_upgrade(on_upgrade_location);
-		return;
-	}
+    go_to_upgrade(on_upgrade_location);
 }
 
 function buy_combine_scrolls(on_combine_scrolls_bought) {
@@ -47,20 +42,15 @@ function buy_combine_scrolls(on_combine_scrolls_bought) {
         return;
     }
 
-    const combineScrollCount = quantity("cscroll0");
-	
-	if (combineScrollCount === 0) {
-        state = "buy_combine_scrolls";
+    state = "buy_combine_scrolls";
 
-        function on_upgrade_location() {
-            buy_with_gold("cscroll0", amount_of_combine_scrolls_to_buy);	
-            state = "idle";
-            on_combine_scrolls_bought();
-        }
+    function on_upgrade_location() {
+        buy_with_gold("cscroll0", amount_of_combine_scrolls_to_buy);	
+        state = "idle";
+        on_combine_scrolls_bought();
+    }
 
-		go_to_upgrade(on_upgrade_location);
-		return;
-	}
+    go_to_upgrade(on_upgrade_location);
 }
 
 function start_combine_item() {
