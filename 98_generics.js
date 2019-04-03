@@ -6,6 +6,8 @@ const buy_potions_on_gold = 500;
 const names = ["JafarM", "MichaelK", "Leonidas", "BarryOSeven"];
 const currentPlayer = parent.parent.character.name;
 
+const manual_mode = false;
+
 auto_reload("on");
 
 // temporary game loop

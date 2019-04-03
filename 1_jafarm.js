@@ -349,7 +349,7 @@ function start_exchange_seashells() {
 }
 
 setInterval(function() {
-	if (is_moving(character)) {
+	if (manual_mode || is_moving(character)) {
 		return;
     }
 

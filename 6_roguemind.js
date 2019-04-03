@@ -11,7 +11,7 @@ load_code(97, function() {
 setInterval(function(){
 	loot();
 	
-	if(character.rip || is_moving(character)) return;
+	if(manual_mode || character.rip || is_moving(character)) return;
 
 	handle_collection();
 

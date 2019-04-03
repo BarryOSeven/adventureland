@@ -71,7 +71,7 @@ function support_update_target(target) {
 setInterval(function() {
 	loot();
 	
-	if(character.rip || is_moving(character)) {
+	if(manual_mode || character.rip || is_moving(character)) {
 		return;
 	}
 
