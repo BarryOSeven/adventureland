@@ -132,17 +132,18 @@ function get_upgradable_items() {
 
 		switch (item.name) {
             case "shield":
-	    case "bow":
+            case "bow":
             case "shoes":
             case "spear":
-	    case "gloves":
+	        case "gloves":
             case "helmet":
             case "helmet1":
             case "wcap":
             case "wshoes":
-	    case "wbreeches":
-	    case "wgloves":
-	    
+	        case "wbreeches":
+            case "wgloves":
+            case "coat1":
+            case "shoes1":
 				upgradable_items.push(item);
 				break;
 		}

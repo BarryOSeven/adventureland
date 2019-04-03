@@ -432,7 +432,7 @@ function equip_strongest_earring(slot, item) {
 	const properties_2 = item_properties(current_earring_2);
 	const current_value_2 = calculate_value(properties_2);
 
-	if (current_value_1 > current_value_2) {
+	if (current_value_1 < current_value_2) {
 		equip_strongest("earring1", slot, item);
 	} else {
 		equip_strongest("earring2", slot, item);
